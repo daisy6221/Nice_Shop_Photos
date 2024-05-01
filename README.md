@@ -1,24 +1,36 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Nice Shop Photos
+​
+## サイト概要
+### サイトテーマ
+お気に入りのお店の、外観、内装の写真を投稿したり
+検索をすることが出来るSNSサイト
+​
+### テーマを選んだ理由
+友人たちとカフェ巡りをする際におしゃれな内装、外観を撮影して楽しむことが好きなのですが、
+同じように内装や外観の写真から気になるお店を検索したり、自分好みの場所を
+共有できるサイトがあるといいなと思い、このテーマを選びました。
+​
+### ターゲットユーザー
+- お店の外観、内装など雰囲気を知りたい人
+- おしゃれなインテリアなどの写真を見ることが好きな人
+- 写真を共有したり同じ趣味を持っている人とつながりたい人
+​
+### 主な利用シーン
+- 食事をするお店の雰囲気を知りたい時
+- お出かけスポットを探している時
+- 同じ趣味の人とつながりたい時
+​
+## 設計書
+<!--テーマを設定・提出する時点では不要です-->
+​
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
