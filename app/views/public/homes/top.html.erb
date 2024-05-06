@@ -1,7 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11">
-      <h1>ようこそNice_Shop_Photosへ！</h1>
+      <h1>新着投稿一覧</h1>
+
+      <div class="d-flex">
+      <% @posts.each do |post| %>
+        <div class="d-flex flex-column mx-3 shadow-lg">
+          <%= image_tag post.@photo, size: "100x100" %>
+          <div>
+            <%= link_to(post.user) do %>
+              <%= image_tag book.user.get_profile_image, size: "30x30" %>
+            <% end %>
+            <%= link_to post.user_id.name, post_path %>
+          </div>
+          <%= post.title %>
+        </div>
+      <% end %>
+      </div>
+
     </div>
   </div>
 </div>
