@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/da605d77f9.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -14,6 +15,10 @@
     <header>
       <%= render 'layouts/header' %>
     </header>
+    <main>
+      <p id="notice"><%= notice %></p>
+      <p id="alert"><%= alert %></p>
+    </main>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row mx-auto">
+    <div class="col-md-11 my-3">
+      <h3 class="text-center"><%= @user.name %>さんのユーザーページ</h3>
+
+      <div class="row d-flex my-3">
+      <div class="col-md-3">
+        <%= image_tag @user.get_profile_image(300, 300), class: "rounded-circle" %>
+
+        <!--<#%= link_to likes_path do %>-->
+        <!--  <i class="fas fa-heart"></i>-->
+        <!--<#% end %>-->
+        <!--<#%= link_to "followings", followings_path %>-->
+        <!--<#%= link_to "followers", followers_path %>-->
+      </div>
+      <div class="col-md-6 offset-md-1">
+        <h4>ユーザー名</h4>
+        <%= @user.name %>
+        <h4>自己紹介</h4>
+        <%= @user.introduction %>
+
+        <% if @user.name == current_user.name %>
+          <%= link_to edit_user_path, class: 'btn btn-outline-secondary btn-block' do %>
+            <i class="fas fa-user-cog"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>

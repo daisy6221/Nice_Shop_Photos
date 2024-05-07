@@ -23,15 +23,15 @@ Rails.application.routes.draw do
     get 'users/search' => 'searches#search'
     get 'users/tag_search' => 'tag_searches#search'
 
-    scope '/users/:name' do
-      # 下記アクション時にUserのnameカラムを取得するようcontrollerに記載する
-      get '/followings' => 'relationships#followings', as: 'followings'
-      get '/followers' => 'relationships#followers', as: 'followers'
-      get '/likes' => 'likes#index', as: 'likes'
-    end
+    # scope '/users/:name' do
+    #   # 下記アクション時にUserのnameカラムを取得するようcontrollerに記載する
+    #   get '/followings' => 'relationships#followings', as: 'followings'
+    #   get '/followers' => 'relationships#followers', as: 'followers'
+    #   get '/likes' => 'likes#index', as: 'likes'
+    # end
 
-    resources :users, param: :name, path: '/', only: [:show, :edit, :update] do
-      resource :relationships, param: :user_id.name, path: '/', only: [:create, :destroy]
+    resources :users, param: :name, only: [:show, :edit, :update] do
+      resource :relationships, param: :user_id.name, only: [:create, :destroy]
     end
 
     resources :posts do
