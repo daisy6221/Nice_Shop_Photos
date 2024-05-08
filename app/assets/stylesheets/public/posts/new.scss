@@ -1,0 +1,120 @@
+// Place all the styles related to the public/posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+//image投稿欄のCSS
+.dropzone-container{
+  display: block;
+  margin: 16px auto 0;
+  display: flex;
+
+  //プレビュー表示欄のCSS
+  #preview , #preview2{
+    display: flex;
+
+    .img_view {
+      height: 162px;
+      width: 112px;
+      margin: 0 15px 10px 0;
+
+        img{
+          width: 112px;
+          height: 112px;
+        }
+      }
+
+      .btn_wrapper {
+        display: flex;
+        text-align: center;
+
+        .btn.edit {
+          color: #00b0ff;
+          width: 50%;
+          height: 50px;
+          line-height: 50px;
+          border: 1px solid #eee;
+          background: #f5f5f5;
+          cursor: pointer;
+        }
+
+        .btn.delete {
+          color: #00b0ff;
+          width: 50%;
+          height: 50px;
+          line-height: 50px;
+          border: 1px solid #eee;
+          background: #f5f5f5;
+          cursor: pointer;
+        }
+      }
+    }
+
+  //投稿クリックエリアのCSS
+  .dropzone-area {
+    margin-bottom: 10px;
+    width: 620px;
+
+    .dropzone-box {
+      display: block;
+      border: 1px dashed #ccc;
+      position: relative;
+      background: #f5f5f5;
+      width: 100%;
+      height: 162px;
+      cursor: pointer;
+
+      p {
+        position: absolute;
+        top: 50%;
+        left: 16px;
+        right: 16px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: bold;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        pointer-events: none;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .input_area {
+        display: none;
+      }
+    }
+  }
+  //投稿クリックエリアのCSS
+  .dropzone-area2{
+    display: none;
+    margin-bottom: 10px;
+    width: 620px;
+
+    .dropzone-box {
+      display: block;
+      border: 1px dashed #ccc;
+      position: relative;
+      background: #f5f5f5;
+      width: 100%;
+      height: 162px;
+      cursor: pointer;
+
+      p {
+        position: absolute;
+        top: 50%;
+        left: 16px;
+        right: 16px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: bold;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        pointer-events: none;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .input_area {
+        display: none;
+      }
+    }
+  }
+}

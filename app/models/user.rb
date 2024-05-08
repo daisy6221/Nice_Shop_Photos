@@ -7,8 +7,9 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { minimum: 3, maximum: 30 }, format: { with: /\A[a-zA-Z0-9]+\z/ }
   validates :email, presence: true, uniqueness: true
 
-  has_one_attached :profile_image
+  has_many :posts, dependent: :destroy
 
+  has_one_attached :profile_image
 
   def get_profile_image(width, height)
     unless profile_image.attached?
