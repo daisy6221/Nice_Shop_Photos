@@ -19,9 +19,8 @@
         <%= f.label :introduction, "自己紹介" %>
         <%= f.text_area :introduction, class: "form-control"%>
       </div>
-      <div class="d-flex my-2">
+      <div class="my-2">
         <%= f.submit "編集内容を保存", class: 'btn btn-success' %>
-        <%= link_to "退会する", confirm_unsubscribe_path, class: 'btn btn-danger' %>
       </div>
       <% end %>
 

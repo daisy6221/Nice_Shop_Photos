@@ -15,11 +15,13 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in' => 'public/sessions#guest_sign_in'
+  end
+
   scope module: :public do
     root 'homes#top'
     get '/about' => 'homes#about', as: 'about'
-    get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
-    patch 'users/withdraw' => 'users#withdraw'
     get 'users/search' => 'searches#search'
     get 'users/tag_search' => 'tag_searches#search'
 
@@ -30,7 +32,7 @@ Rails.application.routes.draw do
     #   get '/likes' => 'likes#index', as: 'likes'
     # end
 
-    resources :users, param: :name, only: [:show, :edit, :update] do
+    resources :users, param: :name, only: [:show, :edit, :update, :destroy] do
       resource :relationships, param: :user_id.name, only: [:create, :destroy]
     end
 

@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -16,15 +16,9 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def unsubscribe
-  end
-
-  def withdraw
-    @user = User.find(current_user.id)
-    @user.update(is_active: false)
-    reset_session
-    flash[:notice] = "退会処理が完了しました"
-    redirect_to root_path
+  def destroy
+    @user.destroy
+    redirect_to root_path, notice: "ユーザーを削除しました"
   end
 
   private

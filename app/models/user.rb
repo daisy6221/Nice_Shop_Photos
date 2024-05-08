@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, uniqueness: true, length: { minimum: 3 }, format: { with: /\A[a-zA-Z0-9]+\z/ }
+  validates :name, presence: true, uniqueness: true, length: { minimum: 3, maximum: 30 }, format: { with: /\A[a-zA-Z0-9]+\z/ }
   validates :email, presence: true, uniqueness: true
 
   has_one_attached :profile_image
@@ -21,4 +21,12 @@ class User < ApplicationRecord
   def to_param
     name
   end
+
+  def self.guest
+    find_or_create_by!(email: "guest@example.com") do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guest"
+    end
+  end
+
 end
