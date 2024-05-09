@@ -1,2 +1,35 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-11 shadow-lg my-3 mx-auto">
+      <div class="row d-flex m-2">
+        <h3><strong><%= @post.title %></strong></h3>
+        <div class="ml-auto">
+          <% if @user.name == current_user.name %>
+            <%= link_to "編集する", edit_post_path, class: "btn btn-secondary" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <%= link_to user_path(@user.name) do %>
+          <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
+          <%= @user.name %>
+        <% end %>
+      </div>
+
+      <div class="photos-field my-3">
+        <% @post.photos.each do |img|%>
+          <%= image_tag img.image.url %>
+        <% end %>
+      </div>
+
+      <h6 class="my-2"><strong>ショップ名：</strong> <%= @post.shop_name %></h6>
+      <h6 class="my-2"><strong>住所：</strong> <%= @post.address %></h6>
+      <div class="my-2">
+        <h6 class="mb-2"><strong>おすすめポイント</strong></h6>
+        <p><%= @post.body %></p>
+      </div>
+
+    </div>
+  </div>
+</div>

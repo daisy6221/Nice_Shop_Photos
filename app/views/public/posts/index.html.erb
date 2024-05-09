@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-11 mx-auto my-3">
+
+      <h3 class="my-3 text-center">投稿一覧</h3>
+      <table class="table">
+        <thead>
+          <th>写真</th>
+          <th>タイトル</th>
+          <th>ユーザー名</th>
+          <th>ショップ名</th>
+        </thead>
+        <% @posts.each do |post| %>
+        <tbody>
+          <td>
+            <% if post.photos.present? %>
+              <%= image_tag post.photos.first.image.url, size: "150x150" %>
+            <% end %>
+          </td>
+          <td><%= link_to post.title, post_path(post.id)%></td>
+          <td>
+              <%= link_to user_path(post.user) do %>
+                <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
+                <%= post.user.name %>
+              <% end %>
+          </td>
+          <td><%= post.shop_name %></td>
+        </tbody>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>

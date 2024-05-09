@@ -1,36 +1,22 @@
 <div class="container">
-  <div class="row mx-auto">
-    <div class="col-md-11">
-      <h3 class="my-3">新規投稿画面</h3>
+  <div class="row">
 
-      <%= form_with model: @post, url: posts_path, method: :post do |f| %>
-      <!--画像フォーム-->
-      <div class="upload-box">
-        <div class="upload-box_head">
-          <h4 class="bigger">お店の画像</h4>
-          <p class="discription">最大10枚までアップロードできます</p>
-        </div>
-
-        <%= f.fields_for :photos do |image| %>
-          <div class="drop-container" id="preview">
-            <div class="dropzone-area">
-              <%= image.label :image, class: "dropzone-box", for: "upload-image" do %>
-                <div class="input-area">
-                  <%= image.file_field :image, multiple: true, name: 'good_photos[image][]', id: "upload-image", class: "upload-image", 'data-image': 0 %>
-                  <p>ここをクリックしてください</p>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div class="drop-container" id="preview2">
-            <div class="dropzone-area2">
-              <%= image.label :image, class: "dropzone-box", for: "upload-image" do %>
-                <p>ここをクリックしてください。</p>
-              <% end %>
-            </div>
+      <%= form_with model: @post, url: posts_path do |f| %>
+      <div class="col-md-11 mx-auto">
+        <h3 class="my-3">新規投稿画面</h3>
+          <!--画像フォーム-->
+        <%= f.fields_for :photos do |img| %>
+          <div class="form-area_image_field">
+            <%= img.label :image, "お店の画像" %>
+            <%= img.file_field :image, multiple: true, name: "photos[image][]" %>
+            <%= hidden_field :photos, :post_id, value: @post.id %>
           </div>
         <% end %>
+
+        <div class="form_area__hidden_field">
+          <%= hidden_field :post, :user_id, value: current_user.id %>
         </div>
+
           <!--入力フォーム-->
         <div class="form-group">
           <%= f.label :title, "タイトル" %>
@@ -52,7 +38,8 @@
         <div class="my-2">
           <%= f.submit "投稿する", class: "btn btn-primary" %>
         </div>
+      </div>
       <% end %>
-    </div>
+
   </div>
 </div>
