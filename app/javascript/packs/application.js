@@ -2,7 +2,8 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
-//= require jquery3
+//= require turbolinks
+//= require jquery
 //= require jquery_ujs
 //= require_tree .
 
@@ -16,6 +17,7 @@ import "bootstrap";
 import "../stylesheets/application";
 import Swiper from 'swiper/swiper-bundle.js';
 import 'swiper/swiper-bundle.css';
+import 'posts.js'
 
 Rails.start()
 Turbolinks.start()

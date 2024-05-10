@@ -1,20 +1,33 @@
 <div class="container">
   <div class="row">
 
-      <%= form_with model: @post, url: post_path, method: :patch do |f| %>
+      <%= form_with model: @post, url: post_path, method: :patch, locals: { photos: @post.photos } do |f| %>
       <div class="col-md-11 mx-auto">
         <h3 class="my-3">編集画面</h3>
           <!--画像フォーム-->
-        <%= f.fields_for :photos do |img| %>
-          <div class="form-area_image_field">
-            <%= img.label :image, "お店の画像" %>
-            <%= img.file_field :image, multiple: true, name: "photos[image][]" %>
-            <%= hidden_field :photos, :post_id, value: @post.id %>
-          </div>
-        <% end %>
-
-        <div class="form_area__hidden_field">
-          <%= hidden_field :post, :user_id, value: current_user.id %>
+        <div id="image-box">
+          <!--<div id="previews">-->
+          <!--  <#% if @post.persisted? %>-->
+          <!--    <#% @post.photos.each_with_index do |img, i| %>-->
+          <!--      <#%= image_tag img.image.url, data: { index: i }, width: "100", height: '100' %>-->
+          <!--    <#% end %>-->
+          <!--  <#% end %>-->
+          <!--</div>-->
+          <%= f.fields_for :photos do |img| %>
+            <div data-index="<%= img.index %>" class="js-file_group">
+              <%= img.file_field :image, class: 'js-file' %><br>
+              <span class="js-remove">削除</span>
+            </div>
+            <% if @post.persisted? %>
+              <%= img.check_box :_destroy, data:{ index: img.index }, class: 'hidden-destroy' %>
+            <% end %>
+          <% end %>
+          <% if @post.persisted? %>
+            <div data-index="<%= @post.photos.count %>" class="js-file_group">
+              <%= file_field_tag :image, name: "product[photos_attributes][#{@post.photos.count}][image]", class: 'js-file' %>
+              <div class="js-remove">削除</div>
+            </div>
+          <% end %>
         </div>
 
           <!--入力フォーム-->

@@ -5,16 +5,21 @@
       <div class="col-md-11 mx-auto">
         <h3 class="my-3">新規投稿画面</h3>
           <!--画像フォーム-->
-        <%= f.fields_for :photos do |img| %>
-          <div class="form-area_image_field">
-            <%= img.label :image, "お店の画像" %>
-            <%= img.file_field :image, multiple: true, name: "photos[image][]" %>
-            <%= hidden_field :photos, :post_id, value: @post.id %>
+        <div id="image-box">
+          <div id="previews">
+            <% if @post.persisted? %>
+              <% @post.photos.each_with_index do |img, i| %>
+                <%= image_tag img.image.url, data: { index: i }, width: "100", height: '100' %>
+              <% end %>
+            <% end %>
           </div>
-        <% end %>
 
-        <div class="form_area__hidden_field">
-          <%= hidden_field :post, :user_id, value: current_user.id %>
+          <%= f.fields_for :photos do |img| %>
+           <div data-index="<%= img.index %>" class="js-file_group">
+             <%= img.file_field :image, class: 'js-file' %><br>
+             <span class="js-remove">削除</span>
+           </div>
+          <% end %>
         </div>
 
           <!--入力フォーム-->
