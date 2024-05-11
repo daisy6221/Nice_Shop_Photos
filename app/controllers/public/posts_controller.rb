@@ -1,14 +1,13 @@
 class Public::PostsController < ApplicationController
   def new
     @post = Post.new
-    @post_photo = @post.photos.build
+    @post.photos.build
   end
 
   def create
-    post = Post.new(post_params)
-    post.user_id = current_user.id
-    if post.save
-      redirect_to post_path(post.id)
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to post_path(@post.id)
     else
       flash[:notice] = "投稿に失敗しました"
       render "new"
@@ -33,14 +32,7 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.includes(:photos).find(params[:id])
-    @post.user_id = current_user.id
-
     if @post.update(post_params)
-      # if params[:photos][:image].present?
-      #   params[:photos][:image].each do |image|
-      #     @post.photos.create(image: image, post_id: @post.id)
-      #   end
-      # end
       redirect_to post_path(@post.id), notice: '投稿が更新されました'
     else
       render "edit", notice: '投稿に失敗しました'
@@ -54,6 +46,6 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :shop_name, :address, :body, photos_attributes: [:id, :_destroy, :image])
+    params.require(:post).permit(:title, :shop_name, :address, :body, photos_attributes: [:id, :_destroy, :image, :image_cache]).merge(user_id: current_user.id)
   end
 end

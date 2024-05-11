@@ -15,7 +15,8 @@
           <!--</div>-->
           <%= f.fields_for :photos do |img| %>
             <div data-index="<%= img.index %>" class="js-file_group">
-              <%= img.file_field :image, class: 'js-file' %><br>
+              <%= img.file_field :image, class: 'js-file', id: "file-upload" %><br>
+              <%= img.hidden_field :image_cache %>
               <span class="js-remove">削除</span>
             </div>
             <% if @post.persisted? %>
@@ -24,7 +25,7 @@
           <% end %>
           <% if @post.persisted? %>
             <div data-index="<%= @post.photos.count %>" class="js-file_group">
-              <%= file_field_tag :image, name: "product[photos_attributes][#{@post.photos.count}][image]", class: 'js-file' %>
+              <%= file_field_tag :image, name: "post[photos_attributes][#{@post.photos.count}][image]", class: 'js-file' %>
               <div class="js-remove">削除</div>
             </div>
           <% end %>

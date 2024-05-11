@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function() {
                     <input class="js-file" type="file"
                     name="post[photos_attributes][${index}][image]"
                     id="post_photos_attributes_${index}_image"><br>
-                    <div class="js-remove">削除</div>
+                    <span class="js-remove">削除</span>
                   </div>`;
     return html;
   }
@@ -19,7 +19,6 @@ $(document).on('turbolinks:load', function() {
 
     $('#image-box').append(buildFileField(fileIndex[0]));
     fileIndex.shift();
-
     fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
   });
 
@@ -29,9 +28,11 @@ $(document).on('turbolinks:load', function() {
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
-    (省略)
+    // (省略)
     $(this).parent().remove();
 
-    if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+    if ($('.js-file').length === 0) {
+      $('#image-box').append(buildFileField(fileIndex[0]));
+    }
   });
 });
