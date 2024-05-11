@@ -17,22 +17,34 @@ $(document).on('turbolinks:load', function() {
 
   $('#image-box').on('change', '.js-file', function(e) {
 
-    $('#image-box').append(buildFileField(fileIndex[0]));
-    fileIndex.shift();
-    fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+    const targetIndex = $(this).parent().data('index');
+    const file = e.target.files[0];
+    const blobUrl = window.URL.createObjectURL(file);
+
+    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
+      img.setAttribute('src', blobUrl);
+    } else {
+      $('#previews').append(buildFileField(targetIndex, blobUrl));
+
+      if ($('.js-file').length < fileIndex.length) {
+        $('#image-box').append(buildFileField(fileIndex[0]));
+          fileIndex.shift();
+      　　fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      }
+     }
   });
 
   $('#image-box').on('click', '.js-remove', function() {
-    const targetIndex = $(this).parent().data('index')
-    // 該当indexを振られているチェックボックスを取得する
-    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-    // もしチェックボックスが存在すればチェックを入れる
-    if (hiddenCheck) hiddenCheck.prop('checked', true);
-    // (省略)
-    $(this).parent().remove();
+    const targetIndex = $(this).parent().data('index');
 
-    if ($('.js-file').length === 0) {
-      $('#image-box').append(buildFileField(fileIndex[0]));
-    }
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
+
+    $(this).parent().remove();
+    $(`img[data-index="${targetIndex}"]`).remove();
+
+
+    if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });
 });

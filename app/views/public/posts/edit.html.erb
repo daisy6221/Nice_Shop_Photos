@@ -6,13 +6,13 @@
         <h3 class="my-3">編集画面</h3>
           <!--画像フォーム-->
         <div id="image-box">
-          <!--<div id="previews">-->
-          <!--  <#% if @post.persisted? %>-->
-          <!--    <#% @post.photos.each_with_index do |img, i| %>-->
-          <!--      <#%= image_tag img.image.url, data: { index: i }, width: "100", height: '100' %>-->
-          <!--    <#% end %>-->
-          <!--  <#% end %>-->
-          <!--</div>-->
+          <div id="previews">
+            <% if @post.persisted? %>
+              <% @post.photos.each_with_index do |img, i| %>
+                <%= image_tag img.image.url, data: { index: i }, width: "100", height: '100' %>
+              <% end %>
+            <% end %>
+          </div>
           <%= f.fields_for :photos do |img| %>
             <div data-index="<%= img.index %>" class="js-file_group">
               <%= img.file_field :image, class: 'js-file', id: "file-upload" %><br>
