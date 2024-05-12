@@ -1,22 +1,49 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-11">
-      <h1>新着投稿一覧</h1>
+    <div class="col-md-11 mx-auto">
+      <div class="swiper mt-2">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide mx-auto">
+            <%= image_tag 'slide1.jpg', size: "1015x500" %>
+          </div>
+          <div class="swiper-slide">
+            <%= image_tag 'slide2.jpg', size: "1015x500" %>
+          </div>
+          <div class="swiper-slide">
+            <%= image_tag 'slide3.jpg', size: "1015x500" %>
+          </div>
+          <div class="swiper-slide">
+            <%= image_tag 'slide4.jpg', size: "1015x500" %>
+          </div>
+        </div>
+        <!-- ページネーションの要素 -->
+        <div class="swiper-pagination"></div>
+        <!-- ナビゲーションボタン （前、次） -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
 
-      <!--<div class="d-flex">-->
-      <!--<#% @posts.each do |post| %>-->
-      <!--  <div class="d-flex flex-column mx-3 shadow-lg">-->
-      <!--    <#%= image_tag post.@photo, size: "100x100" %>-->
-      <!--    <div>-->
-      <!--      <#%= link_to(post.user) do %>-->
-      <!--        <#%= image_tag book.user.get_profile_image, size: "30x30" %>-->
-      <!--      <#% end %>-->
-      <!--      <#%= link_to post.user_id.name, post_path %>-->
-      <!--    </div>-->
-      <!--    <#%= post.title %>-->
-      <!--  </div>-->
-      <!--<#% end %>-->
-      <!--</div>-->
+
+      <div class="row my-3">
+        <h3 class="mt-2">新着投稿一覧</h3>
+        <% @posts.each do |post| %>
+          <div class="card m-2">
+            <div class="card-img-top">
+              <%= link_to post_path(post) do %>
+                <%= image_tag post.photos.first.image.url, size: "150x150" %>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <%= link_to user_path(post.user) do %>
+                <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle" %>
+                <%= post.user.name %>
+              <% end %><br>
+              <%= link_to post.title, post_path(post) %>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to "すべての投稿を見る", posts_path %>
+      </div>
 
     </div>
   </div>

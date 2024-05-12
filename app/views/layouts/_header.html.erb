@@ -1,18 +1,19 @@
-<div class="header-content">
-   <%= link_to "Nice Shop Photos", root_path, class: 'logo' %>
-
-   <ul class="flex">
-     <% if user_signed_in? %>
-       <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
-       <%= link_to "新規投稿", new_post_path, class: "btn btn-outline-primary" %>
-       <%= link_to "投稿一覧", posts_path, class: "btn btn-outline-primary" %>
-       <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-primary" %>
-       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary" %>
-     <% else %>
-       <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
-       <%= link_to "About", about_path, class: "btn btn-outline-primary" %>
-       <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-primary" %>
-       <%= link_to "Log in", user_session_path, class: "btn btn-outline-primary" %>
-     <% end %>
+  <div class="header-content">
+   <ul class="flex p-3">
+     <%= link_to "Nice Shop Photos", root_path, class: 'logo' %>
+     <div class="float-right">
+       <% if user_signed_in? %>
+         <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
+         <%= link_to "新規投稿", new_post_path, class: "btn btn-outline-primary" %>
+         <%= link_to "投稿一覧", posts_path, class: "btn btn-outline-primary" %>
+         <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-primary" %>
+         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary" %>
+       <% else %>
+         <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
+         <%= link_to "About", about_path, class: "btn btn-outline-primary" %>
+         <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-primary" %>
+         <%= link_to "Log in", user_session_path, class: "btn btn-outline-primary" %>
+       <% end %>
+     </div>
    </ul>
-</div>
+  </div>

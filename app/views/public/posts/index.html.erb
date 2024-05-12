@@ -13,9 +13,7 @@
         <% @posts.each do |post| %>
         <tbody>
           <td>
-            <% if post.photos.present? %>
-              <%= image_tag post.photos.first.image.url, size: "150x150" %>
-            <% end %>
+            <%= image_tag post.photos.first.image.url, size: "150x150" %>
           </td>
           <td><%= link_to post.title, post_path(post.id)%></td>
           <td>
