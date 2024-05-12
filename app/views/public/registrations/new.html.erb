@@ -28,8 +28,9 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
 
-      <div class="actions my-2">
+      <div class="d-grid gap-2 my-2">
         <%= f.submit "Sign up", class: 'btn btn-success' %>
+        <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-secondary' %>
       </div>
     <% end %>
     </div>

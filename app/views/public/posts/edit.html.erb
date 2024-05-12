@@ -51,7 +51,7 @@
 
         <div class="d-grid gap-2 my-2">
           <%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
-          <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+          <%= link_to "投稿に戻る", post_path(@post), class: "btn btn-secondary" %>
         </div>
       </div>
       <% end %>

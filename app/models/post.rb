@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   has_many :photos, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
 
-  validates :title, presence: true
-  validates :shop_name, presence: true
-  validates :address, presence: true
+  validates :title, presence: true, length: { maximum: 30 }
+  validates :shop_name, presence: true, length: { maximum: 30 }
+  validates :address, presence: true, length: { maximum: 50 }
   validates :body, presence: true, length: { minimum: 3, maximum: 200 }
 end

@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row mx-auto">
-    <div class="col-md-11 my-3">
+  <div class="row">
+    <div class="col-md-11 my-3 mx-auto">
       <h3 class="text-center"><%= @user.name %>さんのユーザーページ</h3>
 
       <div class="row d-flex my-3">
@@ -32,7 +32,29 @@
           <% end %>
         <% end %>
       </div>
-
+      <table class="table">
+        <thead>
+          <tr>
+            <th>写真</th>
+            <th>タイトル</th>
+            <th>ショップ名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= image_tag post.photos.first.image.url, size: "150x150" %></td>
+              <td><%= post.title %></td>
+              <td><%= post.shop_name %></td>
+              <% if @user.name == current_user.name %>
+                <td><%= link_to "編集", edit_post_path(post), class: "btn btn-primary" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @posts %>
       </div>
     </div>
   </div>

@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show
+    @posts = @user.posts.page(params[:page]).per(10)
   end
 
   def edit
