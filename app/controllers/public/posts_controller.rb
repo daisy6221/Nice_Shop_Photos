@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post.id)
     else
       flash[:notice] = "投稿に失敗しました"
-      render "new"
+      redirect_to new_post_path
     end
   end
 

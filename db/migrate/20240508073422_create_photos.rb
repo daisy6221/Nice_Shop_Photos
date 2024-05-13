@@ -3,7 +3,7 @@ class CreatePhotos < ActiveRecord::Migration[6.1]
     create_table :photos do |t|
 
       t.integer :post_id, null: false
-      t.string  :image, null: false
+      t.string  :image, null: false, presence: true
       t.timestamps
     end
   end

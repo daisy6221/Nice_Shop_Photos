@@ -3,6 +3,9 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :photos, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
+  #画像投稿のバリテーション
+  validates_associated :photos
+  validates :photos, presence: true
 
   validates :title, presence: true, length: { maximum: 30 }
   validates :shop_name, presence: true, length: { maximum: 30 }
