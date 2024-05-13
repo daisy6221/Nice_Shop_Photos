@@ -42,7 +42,10 @@
             </div>
           </div>
         <% end %>
-        <%= link_to "すべての投稿を見る", posts_path %>
+        <div class="d-grid gap-2">
+          <%= link_to "すべての投稿を見る", posts_path %>
+          <p>投稿を閲覧する場合は<%= link_to "Sign up", new_user_registration_path %></p>
+        </div>
       </div>
 
     </div>

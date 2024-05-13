@@ -1,5 +1,8 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit]
+  before_action :ensure_guest_user, only: [:edit]
 
   def show
     @posts = @user.posts.page(params[:page]).per(10)
@@ -29,6 +32,18 @@ class Public::UsersController < ApplicationController
     sanitized_name_str = name_str.gsub(/[^a-zA-Z0-9_]/, '')
     name_sym = sanitized_name_str.to_sym
     @user = User.find_by(name: name_sym)
+  end
+
+  def ensure_correct_user
+    unless @user == current_user
+      redirect_to user_path(@user), notice: "ユーザー情報が一致しませんでした"
+    end
+  end
+
+  def ensure_guest_user
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
   end
 
   def user_params
