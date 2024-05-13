@@ -66,5 +66,5 @@ gem "net-pop"
 gem "net-imap"
 gem "carrierwave"
 gem "mini_magick"
-gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3"
 gem 'fog-aws'
