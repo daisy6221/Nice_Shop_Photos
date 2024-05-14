@@ -2,6 +2,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
   has_many :photos, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
   #画像投稿のバリテーション
   validates_associated :photos

@@ -1,0 +1,9 @@
+<% post.post_comments.each do |post_comment| %>
+  <div class="d-grid gap-2">
+    <%= link_to user_path(post_comment.user) do %>
+      <%= image_tag post_comment.user.get_profile_image, size: "50x50" %>
+      <%= post_comment.user.name %>
+    <% end %>
+  </div>
+  <%= post_comment.comment %>
+<% end %>
