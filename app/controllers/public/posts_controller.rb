@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_guest_user, only: [:new]
   before_action :ensure_correct_user, only: [:edit]
 
   def new
@@ -54,6 +55,12 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     unless @post.user == current_user
       redirect_to posts_path, notice: "ユーザー情報が一致しませんでした"
+    end
+  end
+
+  def check_guest_user
+    if current_user.guest?
+      redirect_to root_path, alert: "投稿する場合は会員登録を行ってください"
     end
   end
 

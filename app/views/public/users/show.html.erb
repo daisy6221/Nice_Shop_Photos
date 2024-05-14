@@ -4,13 +4,7 @@
       <div class="d-flex justify-content-center mb-2">
         <%= render "public/searches/form" %>
       </div>
-      <h3 class="text-center">
-        <% if @user.email == "guest@example.com" %>
-          ゲストユーザーさんのユーザーページ
-        <% else %>
-          <%= @user.name %>さんのユーザーページ
-        <% end %>
-      </h3>
+      <h3 class="text-center"><%= @user.name %>さんのユーザーページ</h3>
 
       <div class="row d-flex my-3">
       <div class="col-md-3">
