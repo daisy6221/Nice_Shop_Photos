@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11 my-3 mx-auto">
+      <div class="d-flex justify-content-center mb-2">
+        <%= render "public/searches/form" %>
+      </div>
       <h3 class="text-center"><%= @user.name %>さんのユーザーページ</h3>
 
       <div class="row d-flex my-3">
@@ -32,7 +35,7 @@
           <% end %>
         <% end %>
       </div>
-      <table class="table">
+      <table class="table my-3">
         <thead>
           <tr>
             <th>写真</th>
@@ -44,17 +47,25 @@
         <tbody>
           <% @posts.each do |post| %>
             <tr>
-              <td><%= image_tag post.photos.first.image.url, size: "150x150" %></td>
-              <td><%= post.title %></td>
+              <td>
+                <%= link_to post_path(post) do %>
+                  <%= image_tag post.photos.first.image.url, size: "150x150" %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to post_path(post) do %>
+                  <%= post.title %>
+                <% end %>
+              </td>
               <td><%= post.shop_name %></td>
-              <% if @user.name == current_user.name %>
-                <td><%= link_to "編集", edit_post_path(post), class: "btn btn-primary" %></td>
-              <% end %>
+              <td><%= link_to "編集", edit_post_path(post), class: "btn btn-primary" %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-      <%= paginate @posts %>
+      <div class="pagination justify-content-center">
+        <%= paginate @posts %>
+      </div>
       </div>
     </div>
   </div>
