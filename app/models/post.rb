@@ -11,4 +11,8 @@ class Post < ApplicationRecord
   validates :shop_name, presence: true, length: { maximum: 30 }
   validates :address, presence: true, length: { maximum: 50 }
   validates :body, presence: true, length: { minimum: 3, maximum: 200 }
+
+  def self.search_for(content)
+    Post.where("title LIKE?", "%" + content + "%")
+  end
 end

@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>写真</th>
+      <th>タイトル</th>
+      <th>ユーザー名</th>
+      <th>ショップ名</th>
+    </tr>
+  </thead>
+  <% posts.each do |post| %>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to post_path(post) do %>
+          <%= image_tag post.photos.first.image.url, size: "150x150" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to post_path(post) do %>
+          <%= post.title %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to user_path(post.user) do %>
+          <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
+          <%= post.user.name %>
+        <% end %>
+      </td>
+      <td><%= post.shop_name %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+<div class="pagination justify-content-center">
+  <%= paginate posts %>
+</div>

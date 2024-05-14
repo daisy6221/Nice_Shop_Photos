@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>プロフィール画像</th>
+      <th>ユーザー名</th>
+      <th>自己紹介</th>
+    </tr>
+  </thead>
+  <% users.each do |user| %>
+  <tbody>
+    <tr>
+      <%= link_to user_path(user) do %>
+      <td><%= image_tag user.get_profile_image(100, 100), class: "rounded-circle" %></td>
+      <td><%= user.name %></td>
+      <% end %>
+      <td><%= user.introduction %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+<div class="pagination justify-content-center">
+  <%= paginate users %>
+</div>
