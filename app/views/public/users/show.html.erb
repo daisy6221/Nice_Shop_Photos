@@ -20,7 +20,7 @@
         <h4>ユーザー名</h4>
         <%= @user.name %>
         <h4>自己紹介</h4>
-        <%= @user.introduction %>
+        <%= simple_format(@user.introduction) %>
 
         <% if @user.name == current_user.name %>
           <% unless @user.email == "guest@example.com" then %>

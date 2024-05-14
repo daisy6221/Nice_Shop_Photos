@@ -5,6 +5,7 @@
       <th>タイトル</th>
       <th>ユーザー名</th>
       <th>ショップ名</th>
+      <th></th>
     </tr>
   </thead>
   <% posts.each do |post| %>
@@ -27,6 +28,7 @@
         <% end %>
       </td>
       <td><%= post.shop_name %></td>
+      <td>コメント数: <%= post.post_comments.count %></td>
     </tr>
   </tbody>
   <% end %>

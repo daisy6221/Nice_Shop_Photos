@@ -33,13 +33,13 @@ Rails.application.routes.draw do
     #   get '/likes' => 'likes#index', as: 'likes'
     # end
 
-    resources :users, param: :name, only: [:show, :edit, :update, :destroy] do
+    resources :users, param: :name, except: [:new, :create, :index] do
       resource :relationships, param: :user_id.name, only: [:create, :destroy]
     end
 
     resources :posts do
-      resources :post_comments, only: [:create, :destroy]
       resource :likes, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy]
     end
 
     resources :chats, only: [:show, :create, :destroy]

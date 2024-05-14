@@ -1,9 +1,18 @@
 <% post.post_comments.each do |post_comment| %>
-  <div class="d-grid gap-2">
+  <div class="flex-row d-grid gap-2 my-3">
     <%= link_to user_path(post_comment.user) do %>
-      <%= image_tag post_comment.user.get_profile_image, size: "50x50" %>
+      <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %>
       <%= post_comment.user.name %>
     <% end %>
+    <div class="d-flex align-items-center">
+      <div class="align-text-center">
+        <%= simple_format(post_comment.comment) %>
+      </div>
+      <% if post_comment.user == current_user %>
+        <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-outline-secondary' do %>
+          <i class="fa-solid fa-trash-can"></i>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-  <%= post_comment.comment %>
 <% end %>

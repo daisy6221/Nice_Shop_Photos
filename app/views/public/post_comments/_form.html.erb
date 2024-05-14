@@ -1,4 +1,8 @@
-<%= form_with (model:[book, book_comment], local: true) do |f| %>
-  <%= f.text_area :comment, placeholder: "コメントを入力(100字まで)" %>
-  <%= f.submit "送信" %>
-<% end %>
+<div class="flex-row d-grid gap-2 my-3">
+  <%= form_with(model: [post, post_comment], local: true) do |f| %>
+    <%= f.text_area :comment, rows:'2', placeholder: "コメントを入力(100字まで)", class: "w-75" %>
+    <div>
+      <%= f.submit "送信", class: "btn btn-outline-secondary" %>
+    </div>
+  <% end %>
+</div>
