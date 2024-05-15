@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    resources :users, only: [:show, :edit, :update]
-    resources :posts, except: [:new]
+    resources :users, param: :name, only: [:show, :edit, :update, :destroy]
+    resources :posts, except: [:new, :create]
   end
 
 
