@@ -16,7 +16,7 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(current_user), notice: "ユーザー情報が更新されました"
     else
-      render "edit"
+      redirect_to request.referer, notice: "更新に失敗しました。入力内容を見直してください"
     end
   end
 
@@ -28,10 +28,7 @@ class Public::UsersController < ApplicationController
   private
 
   def set_user
-    name_str = params[:name]
-    sanitized_name_str = name_str.gsub(/[^a-zA-Z0-9_]/, '')
-    name_sym = sanitized_name_str.to_sym
-    @user = User.find_by(name: name_sym)
+    @user = User.find_by(name: params[:name])
   end
 
   def ensure_correct_user

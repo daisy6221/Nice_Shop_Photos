@@ -9,18 +9,26 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    if @user.update(admin_user_params)
+      redirect_to admin_user_path(@user), notice: "ユーザー情報を更新しました"
+    else
+      redirect_to request.referer, notice: "更新に失敗しました。入力内容を見直してください"
+    end
   end
 
   def destroy
+    @user.destroy
+    redirect_to admin_top_path, notice: "ユーザーの退会処理が完了しました"
   end
 
   private
 
   def set_user
-    name_str = params[:name]
-    sanitized_name_str = name_str.gsub(/[^a-zA-Z0-9_]/, '')
-    name_sym = sanitized_name_str.to_sym
-    @user = User.find_by(name: name_sym)
+    @user = User.find_by(name: params[:name])
+  end
+
+  def admin_user_params
+    params.require(:user).permit(:name, :profile_image, :email)
   end
 
 end
