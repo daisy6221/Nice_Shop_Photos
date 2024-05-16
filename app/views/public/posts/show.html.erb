@@ -1,8 +1,5 @@
 <div class="container">
   <div class="row">
-    <div class="d-flex mb-2">
-        <%= render "public/searches/form" %>
-    </div>
 
     <div class="col-md-11 shadow-lg my-3 mx-auto">
       <div class="row d-flex m-2">
@@ -20,6 +17,7 @@
           <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
           <%= @user.name %>
         <% end %>
+          <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
           <p>コメント数: <%= @post.post_comments.count %></p>
       </div>
 
@@ -33,7 +31,7 @@
       <h6 class="my-2"><strong>住所：</strong> <%= @post.address %></h6>
       <div class="my-2">
         <h6 class="mb-2"><strong>おすすめポイント</strong></h6>
-        <p><%= simple_format(@post.body) %></p>
+        <p><%= safe_join(@post.body.split("\n"),tag(:br)) %></p>
       </div>
     </div>
 

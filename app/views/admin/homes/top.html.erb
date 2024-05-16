@@ -1,44 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11 mx-auto my-3">
-      <h2 class="text-center">ユーザー一覧</h2>
-
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>ユーザーID</th>
-            <th>プロフィール画像</th>
-            <th>ユーザー名</th>
-            <th></th>
-          </tr>
-        </thead>
-        <% @users.each do |user| %>
-        <tbody>
-          <tr>
-            <td><%= user.id %></td>
-            <td>
-              <%= link_to admin_user_path(user) do %>
-                <%= image_tag user.get_profile_image(100, 100), class: "rounded-circle" %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to admin_user_path(user) do %>
-                <%= user.name %>
-              <% end %>
-            </td>
-            <td>
-              <% unless user.name == "guest" %>
-                <%= link_to "退会", admin_user_path(user), method: :delete, "data-confirm" => "会員の退会処理を行いますか？", class: "btn btn-danger" %>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-        <% end %>
-      </table>
-      <div class="pagination justify-content-center">
-        <%= paginate @users %>
+      <div class="d-flex justify-content-center mb-2">
+        <%= render "searches/form" %>
       </div>
-
+      <h2 class="text-center">ユーザー一覧</h2>
+      <%= render "admin/users/index", users: @users %>
     </div>
   </div>
 </div>
