@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+
+      <%= form_with model: @post, url: admin_post_path, method: :patch, locals: { photos: @post.photos } do |f| %>
+      <div class="col-md-11 mx-auto">
+        <h3 class="my-3">編集画面</h3>
+          <!--画像フォーム-->
+        <div id="image-box">
+          <div id="previews">
+            <% if @post.persisted? %>
+              <% @post.photos.each_with_index do |img, i| %>
+                <%= image_tag img.image.url, data: { index: i }, width: "100", height: '100' %>
+              <% end %>
+            <% end %>
+          </div>
+          <%= f.fields_for :photos do |img| %>
+            <div data-index="<%= img.index %>" class="js-file_group">
+              <%= img.file_field :image, class: 'js-file', id: "file-upload" %><br>
+              <%= img.hidden_field :image_cache %>
+              <span class="js-remove">削除</span>
+            </div>
+            <% if @post.persisted? %>
+              <%= img.check_box :_destroy, data:{ index: img.index }, class: 'hidden-destroy' %>
+            <% end %>
+          <% end %>
+          <% if @post.persisted? %>
+            <div data-index="<%= @post.photos.count %>" class="js-file_group">
+              <%= file_field_tag :image, name: "post[photos_attributes][#{@post.photos.count}][image]", class: 'js-file' %>
+              <div class="js-remove">削除</div>
+            </div>
+          <% end %>
+        </div>
+
+          <!--入力フォーム-->
+        <div class="form-group">
+          <%= f.label :title, "タイトル" %>
+          <%= f.text_field :title, autofocus: true, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :shop_name, "ショップ名" %>
+          <%= f.text_field :shop_name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :body, "おすすめポイント" %>
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
+
+        <div class="d-grid gap-2 my-2">
+          <%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
+          <%= link_to "投稿に戻る", admin_post_path(@post), class: "btn btn-secondary" %>
+        </div>
+      </div>
+      <% end %>
+
+  </div>
+</div>
