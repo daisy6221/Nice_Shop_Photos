@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-
+      <%= render "layouts/errors", obj: @post %>
       <%= form_with model: @post, url: admin_post_path, method: :patch, locals: { photos: @post.photos } do |f| %>
       <div class="col-md-11 mx-auto">
         <h3 class="my-3">編集画面</h3>

@@ -10,6 +10,7 @@ class Public::PostCommentsController < ApplicationController
       redirect_to request.referer, notice: "コメントを投稿しました"
     else
       redirect_to request.referer, alert: "コメントが空欄です"
+    end
   end
 
   def destroy

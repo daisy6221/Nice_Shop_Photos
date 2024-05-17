@@ -19,8 +19,9 @@
         <%= f.label :introduction, "自己紹介" %>
         <%= f.text_area :introduction, class: "form-control"%>
       </div>
-      <div class="my-2">
+      <div class="d-grid gap-2 my-2">
         <%= f.submit "編集内容を保存", class: 'btn btn-success' %>
+        <%= link_to "退会する", user_path, method: :delete, "data-confirm" => "本当に退会しますか？", class: 'btn btn-danger' %>
       </div>
       <% end %>
 
