@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
 
+  get '/search' => 'searches#search'
+  get '/tag_search' => 'tag_searches#search'
+
+  namespace :admin do
+    get 'searches/search'
+  end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    resources :users, only: [:show, :edit, :update]
-    resources :posts, except: [:new]
+    resources :users, param: :name, only: [:show, :edit, :update, :destroy]
+    resources :posts, except: [:new, :create] do
+      resources :post_comments, only: [:destroy]
+    end
   end
 
 
@@ -23,8 +31,6 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get '/about' => 'homes#about', as: 'about'
-    get '/search' => 'searches#search'
-    get '/tag_search' => 'tag_searches#search'
 
     # scope '/users/:name' do
     #   # 下記アクション時にUserのnameカラムを取得するようcontrollerに記載する

@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-11 shadow-lg my-3 mx-auto">
+      <div class="row d-flex m-2">
+        <h3><strong><%= @post.title %></strong></h3>
+        <div class="d-grid gap-2 ml-auto">
+          <%= link_to "編集する", edit_admin_post_path, class: "btn btn-secondary" %>
+          <%= link_to "投稿を削除する", admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= link_to admin_user_path(@user.name) do %>
+          <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
+          <%= @user.name %>
+        <% end %>
+          <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+          <p>コメント数: <%= @post.post_comments.count %></p>
+      </div>
+
+      <div class="photos-field my-3">
+        <% @post.photos.each do |img|%>
+          <%= image_tag img.image.url %>
+        <% end %>
+      </div>
+
+      <h6 class="my-2"><strong>ショップ名：</strong> <%= @post.shop_name %></h6>
+      <h6 class="my-2"><strong>住所：</strong> <%= @post.address %></h6>
+      <div class="my-2">
+        <h6 class="mb-2"><strong>おすすめポイント</strong></h6>
+        <p><%= safe_join(@post.body.split("\n"),tag(:br)) %></p>
+      </div>
+    </div>
+
+    <!--コメント機能管理者用-->
+    <div class="col-md-11 shadow-lg my-3 mx-auto">
+      <% @post.post_comments.each do |post_comment| %>
+        <div class="flex-row d-grid gap-2 my-3">
+          <%= link_to admin_user_path(post_comment.user) do %>
+            <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %>
+            <%= post_comment.user.name %>
+          <% end %>
+          <div class="d-flex align-items-center">
+            <div class="align-text-center">
+              <%= simple_format(post_comment.comment) %>
+            </div>
+            <%= link_to admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-outline-secondary' do %>
+              <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

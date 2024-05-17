@@ -1,6 +1,6 @@
   <div class="header-content">
    <ul class="flex p-3">
-     <%= link_to "Nice Shop Photos", root_path, class: 'logo' %>
+     <%= link_to "Nice Shop Photos", (admin_signed_in? ? admin_top_path : root_path ), class: 'logo' %>
      <div class="float-right">
        <% if user_signed_in? %>
          <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
@@ -8,6 +8,10 @@
          <%= link_to "投稿一覧", posts_path, class: "btn btn-outline-primary" %>
          <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-primary" %>
          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary" %>
+       <% elsif admin_signed_in? %>
+         <%= link_to "会員一覧", admin_top_path, class: "btn btn-outline-primary" %>
+         <%= link_to "投稿一覧", admin_posts_path, class: "btn btn-outline-primary" %>
+         <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %>
        <% else %>
          <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
          <%= link_to "About", about_path, class: "btn btn-outline-primary" %>

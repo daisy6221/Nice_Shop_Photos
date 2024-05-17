@@ -22,11 +22,17 @@
           </div>
         <% end %>
 
-        <div class="d-grid gap-2 my-2">
+        <div class="d-grid gap-2 my-2 text-center">
           <%= f.submit "Log in", class: 'btn btn-primary' %>
           <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-secondary' %>
         </div>
       <% end %>
+
+      <div class="mt-5 mb-3 d-flex d-grid gap-2 justify-content-center">
+        <h5 class="my-auto">管理者ログイン</h5>
+        <%= link_to "Log in", new_admin_session_path, class: 'btn btn-primary' %>
+      </div>
+
     </div>
   </div>
 </div>
