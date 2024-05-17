@@ -9,10 +9,16 @@
   <% users.each do |user| %>
   <tbody>
     <tr>
-      <%= link_to user_path(user) do %>
-      <td><%= image_tag user.get_profile_image(100, 100), class: "rounded-circle" %></td>
-      <td><%= user.name %></td>
-      <% end %>
+      <td>
+        <%= link_to user_path(user) do %>
+          <%= image_tag user.get_profile_image(100, 100), class: "rounded-circle" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to user_path(user) do %>
+          <%= user.name %>
+        <% end %>
+      </td>
       <td><%= user.introduction %></td>
     </tr>
   </tbody>

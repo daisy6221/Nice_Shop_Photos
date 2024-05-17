@@ -13,8 +13,7 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post.id)
     else
-      flash[:notice] = "投稿に失敗しました"
-      redirect_to new_post_path
+      render "new"
     end
   end
 
@@ -40,7 +39,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post.id), notice: '投稿が更新されました'
     else
-      render "edit", notice: '投稿に失敗しました'
+      render "edit"
     end
   end
 

@@ -24,23 +24,26 @@ $(document).on('turbolinks:load', function() {
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {
-      $('#previews').append(buildFileField(targetIndex, blobUrl));
 
-      if ($('.js-file').length < fileIndex.length) {
+      if ($('.js-file').length < 10) {
         $('#image-box').append(buildFileField(fileIndex[0]));
           fileIndex.shift();
       　　fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
       }
      }
+       $(document).ready(function() {
+        if ($('.js-file').length > 10) {
+          alert("上限枚数は10枚です");
+          return;
+       }
+    });
   });
 
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).parent().data('index');
-
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-
+　　// 画像データが存在する場合のフォーム削除処理
     if (hiddenCheck) hiddenCheck.prop('checked', true);
-
     $(this).parent().remove();
     $(`img[data-index="${targetIndex}"]`).remove();
 
