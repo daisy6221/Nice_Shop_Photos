@@ -5,7 +5,7 @@
       <%= post_comment.user.name %>
     <% end %>
     <div class="d-flex align-items-center">
-      <div class="align-text-center">
+      <div class="col my-2">
         <%= simple_format(post_comment.comment) %>
       </div>
       <% if post_comment.user == current_user %>

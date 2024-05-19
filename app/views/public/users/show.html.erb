@@ -55,7 +55,11 @@
                 <% end %>
               </td>
               <td>コメント数: <%= post.post_comments.count %></td>
-              <td><%= link_to "編集", edit_post_path(post), class: "btn btn-primary" %></td>
+              <td>
+                <% if post.user == current_user %>
+                  <%= link_to "編集", edit_post_path(post), class: "btn btn-primary" %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

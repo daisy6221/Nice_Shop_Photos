@@ -23,7 +23,7 @@
       </td>
       <td>
         <% unless user.name == "guest" %>
-          <%= link_to "退会", admin_user_path(user), method: :delete, "data-confirm" => "会員の退会処理を行いますか？", class: "btn btn-danger" %>
+          <%= link_to "編集する", edit_admin_user_path(user), class: "btn btn-secondary" %>
         <% end %>
       </td>
     </tr>
