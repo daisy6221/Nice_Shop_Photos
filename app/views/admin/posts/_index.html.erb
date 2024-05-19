@@ -4,7 +4,7 @@
       <th>写真</th>
       <th>タイトル</th>
       <th>ユーザー名</th>
-      <th>ショップ名</th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -27,8 +27,8 @@
           <%= post.user.name %>
         <% end %>
       </td>
-      <td><%= post.shop_name %></td>
       <td>コメント数: <%= post.post_comments.count %></td>
+      <td><%= link_to "編集する", edit_admin_post_path(post), class: "btn btn-secondary" %></td>
     </tr>
   </tbody>
   <% end %>
