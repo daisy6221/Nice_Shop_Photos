@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :likes]
   before_action :ensure_correct_user, only: [:edit]
   before_action :ensure_guest_user, only: [:edit]
 
@@ -23,6 +23,11 @@ class Public::UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to root_path, notice: "ユーザーを削除しました"
+  end
+
+  def likes
+    likes = Like.where(user_id: @user.id).pluck(:post_id)
+    @like_post = Post.where(id: likes).page(params[:page]).per(10)
   end
 
   private

@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :photos, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
   #画像投稿のバリテーション
   validates_associated :photos
@@ -15,5 +16,9 @@ class Post < ApplicationRecord
 
   def self.search_for(content)
     Post.where("title LIKE?", "%" + content + "%")
+  end
+
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
   end
 end
