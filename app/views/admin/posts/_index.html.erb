@@ -27,7 +27,10 @@
           <%= post.user.name %>
         <% end %>
       </td>
-      <td>コメント数: <%= post.post_comments.count %></td>
+      <td>
+        コメント数: <%= post.post_comments.count %>
+        いいね数: <%= post.likes.count %>
+      </td>
       <td><%= link_to "編集する", edit_admin_post_path(post), class: "btn btn-secondary" %></td>
     </tr>
   </tbody>

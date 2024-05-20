@@ -9,9 +9,9 @@ class Public::LikesController < ApplicationController
   end
 
   def destroy
-　  @post = Post.find(params[:post_id])
-　  like = current_user.likes.find_by(post_id: @post.id)
-　  like.destroy
+     @post = Post.find(params[:post_id])
+     like = current_user.likes.find_by(post_id: @post.id)
+     like.destroy
   end
 
   private

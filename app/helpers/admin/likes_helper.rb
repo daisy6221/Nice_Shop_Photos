@@ -1,2 +1,0 @@
-module Admin::LikesHelper
-end

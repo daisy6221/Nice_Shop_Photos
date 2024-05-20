@@ -15,7 +15,11 @@
           <%= @user.name %>
         <% end %>
           <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
-          <p>コメント数: <%= @post.post_comments.count %></p>
+          <div class="d-flex">
+            <p>コメント数: <%= @post.post_comments.count %></p>
+            <p>いいね数: <%= @post.likes.count %></p>
+          </div>
+
       </div>
 
       <div class="photos-field my-3">
@@ -41,7 +45,7 @@
             <%= post_comment.user.name %>
           <% end %>
           <div class="d-flex align-items-center">
-            <div class="align-text-center">
+            <div class="col my-2">
               <%= simple_format(post_comment.comment) %>
             </div>
             <%= link_to admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-outline-secondary' do %>

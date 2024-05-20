@@ -4,7 +4,9 @@ class Post < ApplicationRecord
   has_many :photos, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
   accepts_nested_attributes_for :photos, allow_destroy: true
+
   #画像投稿のバリテーション
   validates_associated :photos
   validates :photos, presence: true, limit: { min: 1, max: 10 }
