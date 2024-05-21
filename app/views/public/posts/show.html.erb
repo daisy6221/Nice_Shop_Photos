@@ -12,13 +12,20 @@
       </div>
 
       <div class="d-grid gap-3">
-        <%= link_to user_path(@user.name) do %>
-          <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
-          <%= @user.name %>
-        <% end %>
-          <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+        <div class="d-flex">
+          <%= link_to user_path(@user.name) do %>
+            <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
+            <%= @user.name %>
+          <% end %>
+          <div class="my-auto mx-2" id="relationship">
+            <%= render "public/relationships/btn", user: @user %>
+          </div>
+        </div>
+          <p class="mt-5">投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
           <div class="d-flex">
-            <p class="mr-3">コメント数: <%= @post.post_comments.count %></p>
+            <p class="mr-3" id="post_comments_count">
+              <%= render "public/post_comments/count", post: @post %>
+            </p>
             <div id="like_buttons_<%= @post.id %>">
               <%= render "public/likes/likes-btn", post: @post %>
             </div>
@@ -40,7 +47,9 @@
     </div>
 
       <div class="col-md-11 shadow-lg my-3 d-grid gap-2 mx-auto">
-        <%= render "public/post_comments/index", post: @post %>
+        <div id="post_comments_content_<%= @post.id %>">
+          <%= render "public/post_comments/index", post: @post %>
+        </div>
         <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
       </div>
 

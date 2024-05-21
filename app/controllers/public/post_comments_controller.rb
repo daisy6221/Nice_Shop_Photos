@@ -3,19 +3,16 @@ class Public::PostCommentsController < ApplicationController
   before_action :check_guest_user
 
   def create
-    post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     @comment = current_user.post_comments.new(post_comment_params)
-    @comment.post_id = post.id
-    if @comment.save
-      redirect_to request.referer, notice: "コメントを投稿しました"
-    else
-      redirect_to request.referer, alert: "コメントが空欄です"
-    end
+    @comment.post_id = @post.id
+    @comment.save
   end
 
   def destroy
-    PostComment.find(params[:id]).destroy
-    redirect_to request.referer, notice: "コメントを削除しました"
+    @post = Post.find(params[:post_id])
+    @comment = PostComment.find_by(id: params[:id], post_id: params[:post_id])
+    @comment.destroy
   end
 
   private

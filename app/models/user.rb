@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :relationships, source: :followed
 
   validates :name, presence: true, uniqueness: true, length: { minimum: 3, maximum: 30 }, format: { with: /\A[a-zA-Z0-9]+\z/ }, on: :update
   validates :email, presence: true, uniqueness: true
@@ -38,6 +42,18 @@ class User < ApplicationRecord
 
   def self.search_for(content)
     User.where("name LIKE?", "%" + content + "%")
+  end
+
+  def follow(user)
+    relationships.create(followed_id: user.id)
+  end
+
+  def unfollow(user)
+    relationships.find_by(followed_id: user.id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
   end
 
 end

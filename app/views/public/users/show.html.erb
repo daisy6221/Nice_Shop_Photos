@@ -9,15 +9,24 @@
       <div class="row d-flex justify-content-center my-3">
         <!--ユーザー情報-->
         <div class="col-md-3">
-          <%= image_tag @user.get_profile_image(300, 300), class: "rounded-circle" %>
-          <%= link_to likes_user_path(@user) do %>
-            <i class="fas fa-heart"></i>いいね一覧
+          <%= image_tag @user.get_profile_image(200, 200), class: "rounded-circle" %>
+
+          <% unless @user.email == "guest@example.com" then %>
+            <p class="my-2">
+              <%= link_to likes_user_path(@user) do %>
+                <i class="fas fa-heart"></i>いいね一覧
+              <% end %>
+            </p>
+            <p class="my-2">
+              <%= link_to "フォロー一覧", user_followings_path(@user) %>
+            </p>
+            <p class="my-2">
+              <%= link_to "フォロワー一覧", user_followers_path(@user) %>
+            </p>
           <% end %>
-          <!--<#%= link_to "followings", followings_path %>-->
-          <!--<#%= link_to "followers", followers_path %>-->
         </div>
 
-        <div class="col-md-6 offset-md-1">
+        <div class="col-md-6 offset-md-1 d-grid gap-2">
           <h4>ユーザー名</h4>
           <%= @user.name %>
           <h4>自己紹介</h4>
@@ -25,10 +34,18 @@
 
           <% if @user.name == current_user.name %>
             <% unless @user.email == "guest@example.com" then %>
-              <div class="d-grid gap-2 my-2">
+              <div class="my-5">
                 <%= link_to edit_user_path, class: 'btn btn-outline-secondary px-5' do %>
                   <i class="fas fa-user-cog"></i>
                 <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <% unless @user.email == "guest@example.com" then %>
+              <div class="my-5">
+                <div id="relationship">
+                  <%= render "public/relationships/btn", user: @user %>
+                </div>
               </div>
             <% end %>
           <% end %>

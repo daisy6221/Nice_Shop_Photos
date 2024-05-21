@@ -9,7 +9,7 @@
         <%= simple_format(post_comment.comment) %>
       </div>
       <% if post_comment.user == current_user %>
-        <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-outline-secondary' do %>
+        <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'btn btn-outline-secondary', remote: true do %>
           <i class="fa-solid fa-trash-can"></i>
         <% end %>
       <% end %>
