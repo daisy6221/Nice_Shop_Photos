@@ -1,6 +1,6 @@
 <% posts.each do |post| %>
   <div class="row">
-    <div class="col-md-6 d-flex shadow-lg my-3 mx-auto">
+    <div class="col-md-6 d-flex shadow-lg my-3 no-gutters mx-auto">
 
       <div class="align-items-center my-auto">
         <%= link_to post_path(post) do %>
@@ -9,18 +9,25 @@
       </div>
 
       <div class="flex-column my-auto ml-3">
+        <div class="align-text-center mb-2">
+          <%= link_to post_path(post) do %>
+            <h5><strong><%= post.title %></strong></h5>
+          <% end %>
+        </div>
         <div class="d-grid gap-2 my-2">
           <%= link_to user_path(post.user) do %>
             <%= image_tag post.user.get_profile_image(60, 60), class: "rounded-circle" %>
             <%= post.user.name %>
           <% end %>
         </div>
-        <div class="d-grid gap-2 my-2">
-          <%= link_to post_path(post) do %>
-            <h5><strong><%= post.title %></strong></h5>
-          <% end %>
+        <div class="my-2">
           <p><%= post.body %></p>
-          <p>コメント数: <%= post.post_comments.count %></p>
+        </div>
+        <div class="d-flex">
+          <p class="mr-3">コメント数: <%= post.post_comments.count %></p>
+          <div id="like_buttons_<%= post.id %>">
+            <%= render "public/likes/likes-btn", post: post %>
+          </div>
         </div>
       </div>
 

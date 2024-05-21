@@ -40,8 +40,12 @@ Rails.application.routes.draw do
     # end
 
     resources :users, param: :name, except: [:new, :create, :index] do
-      resource :relationships, param: :user_id.name, only: [:create, :destroy]
+      member do
+        get :likes
+      end
+      # resource :relationships, param: :user_id.name, only: [:create, :destroy]
     end
+
 
     resources :posts do
       resource :likes, only: [:create, :destroy]
