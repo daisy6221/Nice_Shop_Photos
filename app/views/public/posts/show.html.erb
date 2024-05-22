@@ -30,6 +30,9 @@
               <%= render "public/likes/likes-btn", post: @post %>
             </div>
           </div>
+          <% @post_tag.each do |tag| %>
+            <%= link_to tag.name, tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
+          <% end %>
       </div>
 
       <div class="photos-field my-3">

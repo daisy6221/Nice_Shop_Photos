@@ -10,13 +10,22 @@
           <h3 class="my-3 text-center">Users search for "<%= @content %>"</h3>
           <%= render "public/users/index", users: @records %>
         <% end %>
-      <% else %>
+      <% elsif @model == "post" %>
         <% if admin_signed_in? %>
           <h3 class="my-3 text-center">Posts search for "<%= @content %>"</h3>
           <%= render "admin/posts/index", posts: @records %>
         <% else %>
           <h3 class="my-3 text-center">Posts search for "<%= @content %>"</h3>
           <%= render "public/posts/index", posts: @records %>
+        <% end %>
+      <% else %>
+        <% if user_signed_in? %>
+          <h4>タグが<%= @contet.name %>の投稿一覧</h4>
+          <% if @content.posts.present? %>
+            <%= render "public/posts/index", posts: @records %>
+          <% else %>
+            <p class="my-3"><%= @content.name %> のタグ付けがされた投稿はありません</p>
+          <% end %>
         <% end %>
       <% end %>
 

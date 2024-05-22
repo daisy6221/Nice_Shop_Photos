@@ -31,6 +31,11 @@
             <%= render "public/likes/likes-btn", post: post %>
           </div>
         </div>
+        <div class="tag_list_box">
+          <% post.tags.each do |tag| %>
+            <%= link_to "#{tag.name}", tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
+          <% end %>
+        </div>
       </div>
 
     </div>
