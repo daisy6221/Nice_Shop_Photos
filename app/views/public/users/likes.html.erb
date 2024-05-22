@@ -1,4 +1,8 @@
 <div class="container">
   <h4 class="text-center">いいねした投稿一覧</h4>
-  <%= render "public/posts/index", posts: @like_post %>
+  <% if @like_post.exists? %>
+    <%= render "public/posts/index", posts: @like_post %>
+  <% else %>
+    <p class="text-center">いいねした投稿はありません</p>
+  <% end %>
 </div>

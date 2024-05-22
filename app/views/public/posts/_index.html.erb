@@ -24,7 +24,9 @@
           <p><%= post.body %></p>
         </div>
         <div class="d-flex">
-          <p class="mr-3">コメント数: <%= post.post_comments.count %></p>
+          <p class="mr-3" id="post_comments_count">
+            <%= render "public/post_comments/count", post: post %>
+          </p>
           <div id="like_buttons_<%= post.id %>">
             <%= render "public/likes/likes-btn", post: post %>
           </div>

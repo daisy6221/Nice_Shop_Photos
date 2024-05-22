@@ -4,6 +4,7 @@
       <th>プロフィール画像</th>
       <th>ユーザー名</th>
       <th>自己紹介</th>
+      <th></th>
     </tr>
   </thead>
   <% users.each do |user| %>
@@ -20,6 +21,11 @@
         <% end %>
       </td>
       <td><%= user.introduction %></td>
+      <td id ="relationship_<%= user.id %>">
+        <% unless user.email == "guest@example.com" then %>
+          <%= render "public/relationships/btn", user: user %>
+        <% end %>
+      </td>
     </tr>
   </tbody>
   <% end %>
