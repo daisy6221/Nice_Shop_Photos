@@ -31,6 +31,9 @@
             <%= render "public/likes/likes-btn", post: post %>
           </div>
         </div>
+        <div>
+          <i class="fas fa-tag"></i><%= post.tags.map(&:name).join(', ') %>
+        </div>
       </div>
 
     </div>

@@ -30,6 +30,10 @@
               <%= render "public/likes/likes-btn", post: @post %>
             </div>
           </div>
+          <% @post_tag.each do |tag| %>
+            <%=tag.name%>
+            <%="(#{tag.posts.count})" %>
+          <% end %>
       </div>
 
       <div class="photos-field my-3">

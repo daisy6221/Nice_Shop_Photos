@@ -10,7 +10,9 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    tag_list = params[:post][:name].split(',')
     if @post.save
+      @post.save_tag(tag_list)
       redirect_to post_path(@post.id)
     else
       render "new"
@@ -19,12 +21,14 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:photos).all.page(params[:page]).per(10)
+    @tag_list = Tag.all
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
     @post_comment = PostComment.new
+    @post_tag = @post.tags
   end
 
   def edit
