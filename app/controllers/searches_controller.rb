@@ -9,9 +9,6 @@ class SearchesController < ApplicationController
     else
       post = Post.search_for(@content)
       @records = post.page(params[:page]).per(10)
-    # else
-    #   tag = Tag.search_for(@content)
-    #   @records = tag.page(params[:page]).per(10)
     end
   end
 end

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   get '/search' => 'searches#search'
-  get '/free_tag_search' => 'tagsearches#search'
 
   namespace :admin do
     get 'searches/search'
