@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destory, :search_tag]
   before_action :check_guest_user, only: [:new]
   before_action :ensure_correct_user, only: [:edit]
 
@@ -36,11 +36,19 @@ class Public::PostsController < ApplicationController
     @post.photos.each do |photo|
       photo.image.cache!
     end
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update
     @post = Post.includes(:photos).find(params[:id])
+    tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
+      # 更新時にタグを削除した場合の処理
+      @old_relations = PostTag.where(post_id: @post.id)
+      @old_relations.each do |relation|
+        relation.delete
+      end
+      @post.save_tag(tag_list)
       redirect_to post_path(@post.id), notice: '投稿が更新されました'
     else
       render "edit"
@@ -51,6 +59,11 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     redirect_to posts_path
+  end
+
+  def search_tag
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.page(params[:page]).per(10)
   end
 
   private

@@ -31,8 +31,7 @@
             </div>
           </div>
           <% @post_tag.each do |tag| %>
-            <%=tag.name%>
-            <%="(#{tag.posts.count})" %>
+            <%= link_to tag.name, tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
           <% end %>
       </div>
 

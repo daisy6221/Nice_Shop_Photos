@@ -31,8 +31,10 @@
             <%= render "public/likes/likes-btn", post: post %>
           </div>
         </div>
-        <div>
-          <i class="fas fa-tag"></i><%= post.tags.map(&:name).join(', ') %>
+        <div class="tag_list_box">
+          <% post.tags.each do |tag| %>
+            <%= link_to "#{tag.name}", tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
+          <% end %>
         </div>
       </div>
 

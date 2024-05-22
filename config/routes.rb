@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/search' => 'searches#search'
-  get '/tag_search' => 'tag_searches#search'
+  get '/free_tag_search' => 'tagsearches#search'
 
   namespace :admin do
     get 'searches/search'
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get '/about' => 'homes#about', as: 'about'
+    get '/tag_search' => 'posts#search_tag'
 
     resources :users, param: :name, except: [:new, :create, :index] do
       get 'followings' => 'relationships#followings', as: 'followings'

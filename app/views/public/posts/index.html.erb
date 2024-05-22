@@ -5,7 +5,11 @@
         <%= render "searches/form" %>
       </div>
       <h3 class="my-3 text-center">投稿一覧</h3>
-
+      <div class="row d-grid gap-2">
+        <% @tag_list.each do |list| %>
+          <%= link_to list.name, tag_search_path(tag_id: list.id), class: "btn btn-outline-secondary btn-sm" %>
+        <% end %>
+      </div>
       <%= render 'public/posts/index', posts: @posts %>
     </div>
   </div>

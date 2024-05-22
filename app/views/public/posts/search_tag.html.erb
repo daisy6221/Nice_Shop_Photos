@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-11 mx-auto my-3">
+      <h4>タグが<%= @tag.name %>の投稿一覧</h4>
+      <% if @tag.posts.present? %>
+        <%= render "public/posts/index", posts: @posts %>
+      <% else %>
+        <p class="my-3"><%= @tag.name %> のタグ付けがされた投稿はありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>
