@@ -19,6 +19,9 @@
             <p>コメント数: <%= @post.post_comments.count %></p>
             <p>いいね数: <%= @post.likes.count %></p>
           </div>
+          <% @post_tag.each do |tag| %>
+            <i class="fas fa-tag"></i><%= tag.name %>
+          <% end %>
 
       </div>
 

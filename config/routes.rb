@@ -2,9 +2,6 @@ Rails.application.routes.draw do
 
   get '/search' => 'searches#search'
 
-  namespace :admin do
-    get 'searches/search'
-  end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
@@ -12,6 +9,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
     resources :users, param: :name, only: [:show, :edit, :update, :destroy]
+    resources :tags, only: [:index, :destroy]
     resources :posts, except: [:new, :create] do
       resources :post_comments, only: [:destroy]
     end

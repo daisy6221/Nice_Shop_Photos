@@ -2,12 +2,13 @@ class SearchesController < ApplicationController
   def search
     @model = params[:model]
     @content = params[:content]
+    @tag = params[:tag]
 
     if @model == "user"
       user = User.search_for(@content)
       @records = user.page(params[:page]).per(10)
     else
-      post = Post.search_for(@content)
+      post = Post.search_for(@content, @tag)
       if params[:latest]
         @records = post.page(params[:page]).per(10).latest
       elsif params[:old]

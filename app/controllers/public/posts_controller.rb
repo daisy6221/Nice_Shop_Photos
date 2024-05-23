@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destory, :search_tag]
-  before_action :check_guest_user, only: [:new]
+  before_action :check_guest_user, only: [:new, :edit]
   before_action :ensure_correct_user, only: [:edit]
 
   def new

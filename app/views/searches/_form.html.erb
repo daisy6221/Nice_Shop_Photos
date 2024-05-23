@@ -1,7 +1,8 @@
-<% if user_signed_in? %>
-  <%= form_with url: search_path, method: :get do |f| %>
-    <%= f.text_field :content %>
-    <%= f.select :model, options_for_select({ "User" => "user", "Post" => "post" }) %>
+<% if user_signed_in? || admin_signed_in? %>
+  <%= form_with url: search_path(content: params[:content], tag: params[:tag]), method: :get do |f| %>
+    <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post" }) %>
+    <%= f.text_field :content, placeholder: "テキストを入力" %>
+    <%= f.text_field :tag, placeholder: "タグ検索はこちら" %>
     <%= f.submit "検索", class: "btn btn-sm btn-light border-dark" %>
   <% end %>
 <% end %>
