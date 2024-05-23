@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get '/about' => 'homes#about', as: 'about'
+    get 'sort_search' => 'posts#search'
     get '/tag_search' => 'posts#search_tag'
 
     resources :users, param: :name, except: [:new, :create, :index] do

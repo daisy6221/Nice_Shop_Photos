@@ -18,6 +18,11 @@ class Post < ApplicationRecord
   validates :address, presence: true, length: { maximum: 50 }
   validates :body, presence: true, length: { minimum: 3, maximum: 200 }
 
+  scope :latest, -> { order(created_at: :desc)}
+  scope :old, -> { order(created_at: :asc)}
+  scope :popular, -> { left_outer_joins(:likes).group("posts.id").order("COUNT(likes.id) DESC") }
+
+
   def self.search_for(content)
     Post.where("title LIKE?", "%" + content + "%")
   end

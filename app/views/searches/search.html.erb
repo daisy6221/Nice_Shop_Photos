@@ -16,16 +16,12 @@
           <%= render "admin/posts/index", posts: @records %>
         <% else %>
           <h3 class="my-3 text-center">Posts search for "<%= @content %>"</h3>
+          <div class="col">
+            <%= link_to "新しい順", search_path({ latest: "true", model: "post", content: @content })  %>
+            |<%= link_to "古い順", search_path({ old: "true", model: "post", content: @content })  %>
+            |<%= link_to "いいね順", search_path({ popular: "true", model: "post", content: @content }) %>
+          </div>
           <%= render "public/posts/index", posts: @records %>
-        <% end %>
-      <% else %>
-        <% if user_signed_in? %>
-          <h4>タグが<%= @contet.name %>の投稿一覧</h4>
-          <% if @content.posts.present? %>
-            <%= render "public/posts/index", posts: @records %>
-          <% else %>
-            <p class="my-3"><%= @content.name %> のタグ付けがされた投稿はありません</p>
-          <% end %>
         <% end %>
       <% end %>
 

@@ -8,7 +8,15 @@ class SearchesController < ApplicationController
       @records = user.page(params[:page]).per(10)
     else
       post = Post.search_for(@content)
-      @records = post.page(params[:page]).per(10)
+      if params[:latest]
+        @records = post.page(params[:page]).per(10).latest
+      elsif params[:old]
+        @records = post.page(params[:page]).per(10).old
+      elsif params[:popular]
+        @records = post.page(params[:page]).per(10).popular
+      else
+        @records = post.page(params[:page]).per(10).order(created_at: :DESC)
+      end
     end
   end
 end
