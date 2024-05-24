@@ -19,7 +19,6 @@ import Swiper from 'swiper/swiper-bundle.js';
 import 'swiper/swiper-bundle.css';
 import 'swiper.js'
 import 'posts.js'
-import 'search.js'
 
 Rails.start()
 Turbolinks.start()
