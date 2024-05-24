@@ -14,9 +14,12 @@ class Post < ApplicationRecord
   validates :photos, presence: true, limit: { min: 1, max: 10 }
 
   validates :title, presence: true, length: { maximum: 30 }
-  validates :shop_name, presence: true, length: { maximum: 30 }
-  validates :address, presence: true, length: { maximum: 50 }
+  validates :shop_name, presence: true
   validates :body, presence: true, length: { minimum: 3, maximum: 200 }
+  validates :address, presence: true
+  geocoded_by :address
+  after_validation :geocode
+
 
   #並べ替え機能
   scope :latest, -> { order(created_at: :desc)}

@@ -1,4 +1,8 @@
+require("dotenv").config();
+
 const { environment } = require('@rails/webpacker')
+
+module.exports = environment
 
 const webpack = require('webpack')
 environment.plugins.prepend(
@@ -10,5 +14,3 @@ environment.plugins.prepend(
     Swiper: 'swiper/swiper-bundle'
   })
 )
-
-module.exports = environment

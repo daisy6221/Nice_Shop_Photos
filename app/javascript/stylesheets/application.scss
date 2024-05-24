@@ -1,1 +1,6 @@
 @use '~bootstrap/scss/bootstrap';
+
+#map {
+  width: 50%;
+  height: calc(100vh - 88px - 179px);
+}

@@ -47,6 +47,9 @@
         <h6 class="mb-2"><strong>おすすめポイント</strong></h6>
         <p><%= safe_join(@post.body.split("\n"),tag(:br)) %></p>
       </div>
+      <div class="row">
+        <div id="map"></div>
+      </div>
     </div>
 
       <div class="col-md-11 shadow-lg my-3 d-grid gap-2 mx-auto">
@@ -58,3 +61,4 @@
 
   </div>
 </div>
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
