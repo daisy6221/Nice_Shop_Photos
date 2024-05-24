@@ -2,6 +2,11 @@
   <div class="row">
     <div class="col-md-11 mx-auto my-3">
       <h4>タグが<%= @tag.name %>の投稿一覧</h4>
+      <div class="col">
+        <%= link_to "新しい順", tag_search_path({ latest: "true", tag_id: params[:tag_id] }) %>
+        |<%= link_to "古い順", tag_search_path({ old: "true", tag_id: params[:tag_id] }) %>
+        |<%= link_to "いいね順", tag_search_path({ popular: "true", tag_id: params[:tag_id] }) %>
+      </div>
       <% if @tag.posts.present? %>
         <%= render "public/posts/index", posts: @posts %>
       <% else %>

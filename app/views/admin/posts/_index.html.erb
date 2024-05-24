@@ -29,7 +29,8 @@
       </td>
       <td>
         コメント数: <%= post.post_comments.count %>
-        いいね数: <%= post.likes.count %>
+        いいね数: <%= post.likes.count %><br>
+        <i class="fas fa-tag"></i><%= post.tags.map(&:name).join(', ') %>
       </td>
       <td><%= link_to "編集する", edit_admin_post_path(post), class: "btn btn-secondary" %></td>
     </tr>

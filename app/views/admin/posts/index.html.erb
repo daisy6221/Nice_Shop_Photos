@@ -5,6 +5,11 @@
         <%= render "searches/form" %>
       </div>
       <h3 class="my-3 text-center">投稿一覧</h3>
+      <div class="col my-2">
+        <%= link_to "新しい順", admin_posts_path(latest: "true") %>
+        |<%= link_to "古い順", admin_posts_path(old: "true") %>
+        |<%= link_to "いいね順", admin_posts_path(popular: "true") %>
+      </div>
       <%= render "admin/posts/index", posts: @posts %>
     </div>
   </div>

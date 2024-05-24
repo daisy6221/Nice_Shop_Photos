@@ -37,7 +37,7 @@
 
       <div class="photos-field my-3">
         <% @post.photos.each do |img|%>
-          <%= image_tag img.image.url %>
+          <%= image_tag img.image.url, size: "300x250", class: "img-thumbnail" %>
         <% end %>
       </div>
 

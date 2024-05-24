@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destory, :search_tag]
-  before_action :check_guest_user, only: [:new]
+  before_action :check_guest_user, only: [:new, :edit]
   before_action :ensure_correct_user, only: [:edit]
 
   def new
@@ -20,8 +20,17 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes(:photos).all.page(params[:page]).per(10)
     @tag_list = Tag.all
+
+    if params[:latest]
+      @posts = Post.includes(:photos).page(params[:page]).per(10).latest
+    elsif params[:old]
+      @posts = Post.includes(:photos).page(params[:page]).per(10).old
+    elsif params[:popular]
+      @posts = Post.includes(:photos).page(params[:page]).per(10).popular
+    else
+      @posts = Post.includes(:photos).all.page(params[:page]).per(10).order(created_at: :DESC)
+    end
   end
 
   def show
@@ -63,7 +72,15 @@ class Public::PostsController < ApplicationController
 
   def search_tag
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.page(params[:page]).per(10)
+    if params[:latest]
+      @posts = @tag.posts.page(params[:page]).per(10).latest
+    elsif params[:old]
+      @posts = @tag.posts.page(params[:page]).per(10).old
+    elsif params[:popular]
+      @posts = @tag.posts.page(params[:page]).per(10).popular
+    else
+      @posts = @tag.posts.page(params[:page]).per(10).order(created_at: :DESC)
+    end
   end
 
   private
