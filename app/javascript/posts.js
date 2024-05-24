@@ -30,7 +30,7 @@ $(document).on('turbolinks:load', function() {
           fileIndex.shift();
       　　fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
       }
-     }
+     } //編集時11枚目追加防止アラート
        $(document).ready(function() {
         if ($('.js-file').length > 10) {
           alert("上限枚数は10枚です");
