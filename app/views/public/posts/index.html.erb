@@ -6,21 +6,9 @@
     <% end %>
   </div>
   <div class="row no-gutters">
+    <%= render "public/posts/sidebar", tag_list: @tag_list %>
 
-    <div class="col-md-3">
-      <div class="my-2">
-        <%= render "searches/form" %>
-      </div>
-
-      <h5 class="my-2">現在登録されているタグ一覧</h5>
-      <div class="my-3">
-        <% @tag_list.each do |list| %>
-          <%= link_to list.name, tag_search_path(tag_id: list.id), class: "btn btn-outline-secondary btn-sm" %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-md-9">
+    <div class="col-md-8">
       <div class="my-2 text-center">
         <%= link_to "新しい順", posts_path(latest: "true") %>
         |<%= link_to "古い順", posts_path(old: "true") %>

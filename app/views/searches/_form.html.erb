@@ -1,14 +1,18 @@
 <% if user_signed_in? || admin_signed_in? %>
   <%= form_with url: search_path(content: params[:content], tag: params[:tag]), method: :get do |f| %>
   <div class="form-group">
-    <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post" }), {}, { id: "model_select" } %>
-    <%= f.text_field :content, class: "form-control me-2", type: "search", placeholder: "テキストを入力" %>
+    <div class="input-group">
+      <%= f.text_field :content, class: "form-control me-2", type: "search", placeholder: "テキストを入力" %>
+      <div class="input-group-append">
+        <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post" }), {}, { id: "model_select" } %>
+      </div>
+      <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </div>
     <div id="tab_search_form" style="display: none;">
       <%= f.text_field :tag, class: "form-control me-2", type: "search", placeholder: "タグ検索はこちら" %>
     </div>
-    <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
-      <i class="fas fa-search"></i>
-    <% end %>
   </div>
   <% end %>
 <% end %>
@@ -21,7 +25,7 @@
 
     modelSelect.addEventListener("change", function() {
       if (this.value === "post") {
-        tabSearchForm.style.display = "block";
+        tabSearchForm.style.display = "flex";
       } else {
         tabSearchForm.style.display = "none";
       }
