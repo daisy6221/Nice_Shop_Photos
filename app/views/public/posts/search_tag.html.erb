@@ -9,6 +9,9 @@
       </div>
       <% if @tag.posts.present? %>
         <%= render "public/posts/index", posts: @posts %>
+        <div class="pagination justify-content-center">
+          <%= paginate @posts %>
+        </div>
       <% else %>
         <p class="my-3"><%= @tag.name %> のタグ付けがされた投稿はありません</p>
       <% end %>

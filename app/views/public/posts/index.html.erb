@@ -1,24 +1,36 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-11 mx-auto my-3">
-      <div class="d-flex justify-content-center mb-2">
+  <div>
+    <h3 class="my-3 text-center">投稿一覧</h3>
+    <%= link_to new_post_path, class: "btn-lg btn-primary" do %>
+      新規投稿 <i class="fa-solid fa-file-circle-plus"></i>
+    <% end %>
+  </div>
+  <div class="row no-gutters">
+
+    <div class="col-md-3">
+      <div class="my-2">
         <%= render "searches/form" %>
       </div>
-      <h3 class="my-3 text-center">投稿一覧</h3>
-      <div class="row">
-        <div class="col">
-          <%= link_to "新しい順", posts_path(latest: "true") %>
-          |<%= link_to "古い順", posts_path(old: "true") %>
-          |<%= link_to "いいね順", posts_path(popular: "true") %>
-        </div>
 
-        <h5 class="mx-3 my-auto">現在登録されているタグ一覧</h5>
+      <h5 class="my-2">現在登録されているタグ一覧</h5>
+      <div class="my-3">
         <% @tag_list.each do |list| %>
           <%= link_to list.name, tag_search_path(tag_id: list.id), class: "btn btn-outline-secondary btn-sm" %>
         <% end %>
       </div>
+    </div>
 
+    <div class="col-md-9">
+      <div class="my-2 text-center">
+        <%= link_to "新しい順", posts_path(latest: "true") %>
+        |<%= link_to "古い順", posts_path(old: "true") %>
+        |<%= link_to "いいね順", posts_path(popular: "true") %>
+      </div>
       <%= render 'public/posts/index', posts: @posts %>
     </div>
+    <div class="pagination justify-content-center">
+      <%= paginate @posts %>
+    </div>
+
   </div>
 </div>
