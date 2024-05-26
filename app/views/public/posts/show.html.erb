@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-11 shadow-lg my-3 mx-auto">
+    <div class="col-md-11 shadow-lg bg-white my-3 mx-auto">
       <div class="row d-flex m-2">
         <h3><strong><%= @post.title %></strong></h3>
         <div class="ml-auto">
@@ -42,17 +42,17 @@
       </div>
 
       <h6 class="my-2"><strong>ショップ名：</strong> <%= @post.shop_name %></h6>
-      <h6 class="my-2"><strong>住所：</strong> <%= @post.address %></h6>
       <div class="my-2">
         <h6 class="mb-2"><strong>おすすめポイント</strong></h6>
         <p><%= safe_join(@post.body.split("\n"),tag(:br)) %></p>
       </div>
-      <div class="row">
+      <h6 class="mb-2"><strong>住所：</strong> <%= @post.address %></h6>
+      <div class="row ml-1 mb-3">
         <div id="map"></div>
       </div>
     </div>
 
-      <div class="col-md-11 shadow-lg my-3 d-grid gap-2 mx-auto">
+      <div class="col-md-11 shadow-lg bg-white my-3 d-grid gap-2 mx-auto">
         <div id="post_comments_content_<%= @post.id %>">
           <%= render "public/post_comments/index", post: @post %>
         </div>

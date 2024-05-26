@@ -14,17 +14,17 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Sawarabi+Gothic&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
     <header>
       <%= render 'layouts/header' %>
     </header>
     <main>
       <p id="notice"><%= notice %></p>
       <p id="alert"><%= alert %></p>
+      <%= yield %>
     </main>
-    <%= yield %>
-    <footer>
-      <p class="text-center">Nice Shop Photos.inc</p>
+    <footer class="footer mt-5">
+      <%= render 'layouts/footer' %>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
   </body>
