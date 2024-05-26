@@ -1,22 +1,24 @@
   <div class="header-content">
    <ul class="flex p-3">
-     <%= link_to "Nice Shop Photos", (admin_signed_in? ? admin_top_path : root_path ), class: 'logo' %>
+     <%= link_to (admin_signed_in? ? admin_top_path : root_path ) do %>
+       <%= image_tag "top_logo.png", size: "120x120", alt: "ロゴ" %>
+     <% end %>
      <div class="float-right">
        <% if user_signed_in? %>
-         <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
-         <%= link_to "投稿一覧", posts_path, class: "btn btn-outline-primary" %>
-         <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-primary" %>
-         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary" %>
+         <%= link_to "Top", root_path, class: "btn btn-outline-secondary" %>
+         <%= link_to "投稿一覧", posts_path, class: "btn btn-outline-secondary" %>
+         <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-secondary" %>
+         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %>
        <% elsif admin_signed_in? %>
-         <%= link_to "会員一覧", admin_top_path, class: "btn btn-outline-primary" %>
-         <%= link_to "投稿一覧", admin_posts_path, class: "btn btn-outline-primary" %>
-         <%= link_to "タグ一覧", admin_tags_path, class: "btn btn-outline-primary" %>
-         <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %>
+         <%= link_to "会員一覧", admin_top_path, class: "btn btn-outline-secondary" %>
+         <%= link_to "投稿一覧", admin_posts_path, class: "btn btn-outline-secondary" %>
+         <%= link_to "タグ一覧", admin_tags_path, class: "btn btn-outline-secondary" %>
+         <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %>
        <% else %>
-         <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
-         <%= link_to "About", about_path, class: "btn btn-outline-primary" %>
-         <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-primary" %>
-         <%= link_to "Log in", user_session_path, class: "btn btn-outline-primary" %>
+         <%= link_to "Top", root_path, class: "btn btn-outline-secondary" %>
+         <%= link_to "About", about_path, class: "btn btn-outline-secondary" %>
+         <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary" %>
+         <%= link_to "Log in", user_session_path, class: "btn btn-outline-secondary" %>
        <% end %>
      </div>
    </ul>
