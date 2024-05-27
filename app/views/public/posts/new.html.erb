@@ -31,10 +31,7 @@
           <%= f.text_field :shop_name, class: "form-control" %>
         </div>
 
-        <div class="input-group mb-3 mt-4">
-          <%= text_field_tag :zipcode, nil, class: "form-control", placeholder: "郵便番号" %>
-        </div>
-        <div class="input-group mb-3 mt-4">
+        <div class="form-group">
           <%= f.text_field :address, class: "form-control", placeholder: "住所" %>
         </div>
 
@@ -51,4 +48,3 @@
     </div>
   </div>
 </div>
-<%= javascript_pack_tag "jpostal", 'data-turbolinks-track': 'reload' %>

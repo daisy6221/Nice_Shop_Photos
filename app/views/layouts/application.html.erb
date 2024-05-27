@@ -18,14 +18,13 @@
     <header>
       <%= render 'layouts/header' %>
     </header>
-    <main>
+    <main class="flex-grow-1">
       <p id="notice"><%= notice %></p>
       <p id="alert"><%= alert %></p>
       <%= yield %>
     </main>
-    <footer class="footer mt-5">
+    <footer class="text-center">
       <%= render 'layouts/footer' %>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
   </body>
 </html>

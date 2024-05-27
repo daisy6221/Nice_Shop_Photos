@@ -13,11 +13,11 @@
 
       <div class="d-grid gap-3">
         <div class="d-flex">
-          <%= link_to user_path(@user.name) do %>
+          <%= link_to user_path(@user.name), class: "link" do %>
             <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
             <%= @user.name %>
           <% end %>
-          <div class="my-auto mx-2" id="relationship">
+          <div class="my-auto mx-2" id="relationship_<%= @user.id %>">
             <%= render "public/relationships/btn", user: @user %>
           </div>
         </div>
@@ -89,6 +89,5 @@
       infowindow.open(map, marker);
     });
   }
-  </script>
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["Geocoding_API_Key"] %>&callback=initMap" async defer></script>
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["Geocoding_API_Key"] %>&callback=initMap" async defer></script>

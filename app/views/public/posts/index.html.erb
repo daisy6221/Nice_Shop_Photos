@@ -1,8 +1,8 @@
 <div class="container">
   <div>
     <h3 class="my-3 text-center">投稿一覧</h3>
-    <%= link_to new_post_path, class: "btn-lg btn-primary" do %>
-      新規投稿 <i class="fa-solid fa-file-circle-plus"></i>
+    <%= link_to new_post_path, class: "btn-lg btn-custom link text-light" do %>
+      投稿する <i class="fa-solid fa-file-circle-plus"></i>
     <% end %>
   </div>
   <div class="row no-gutters">
@@ -10,9 +10,9 @@
 
     <div class="col-md-8">
       <div class="my-2 text-center">
-        <%= link_to "新しい順", posts_path(latest: "true") %>
-        |<%= link_to "古い順", posts_path(old: "true") %>
-        |<%= link_to "いいね順", posts_path(popular: "true") %>
+        <%= link_to "新しい順", posts_path(latest: "true"), class: "link" %>
+        |<%= link_to "古い順", posts_path(old: "true"), class: "link" %>
+        |<%= link_to "いいね順", posts_path(popular: "true"), class: "link" %>
       </div>
       <%= render 'public/posts/index', posts: @posts %>
     </div>
