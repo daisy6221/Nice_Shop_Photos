@@ -1,46 +1,42 @@
 <% posts.each do |post| %>
-  <div class="row">
-    <div class="col-md-6 d-flex shadow-lg my-3 no-gutters mx-auto">
+  <div class="col-md-8 d-flex shadow-lg bg-white my-3 no-gutters mx-auto">
 
-      <div class="align-items-center my-auto">
+    <div class="align-items-center my-auto">
+      <%= link_to post_path(post) do %>
+        <%= image_tag post.photos.first.image.url, size: "200x200" %>
+      <% end %>
+    </div>
+
+    <div class="flex-column my-auto ml-3">
+      <div class="align-text-center mb-2">
         <%= link_to post_path(post) do %>
-          <%= image_tag post.photos.first.image.url, size: "200x200" %>
+          <h5><strong><%= post.title %></strong></h5>
         <% end %>
       </div>
-
-      <div class="flex-column my-auto ml-3">
-        <div class="align-text-center mb-2">
-          <%= link_to post_path(post) do %>
-            <h5><strong><%= post.title %></strong></h5>
-          <% end %>
-        </div>
-        <div class="d-grid gap-2 my-2">
-          <%= link_to user_path(post.user) do %>
-            <%= image_tag post.user.get_profile_image(60, 60), class: "rounded-circle" %>
-            <%= post.user.name %>
-          <% end %>
-        </div>
-        <div class="my-2">
-          <p><%= post.body %></p>
-        </div>
-        <div class="d-flex">
-          <p class="mr-3" id="post_comments_count">
-            <%= render "public/post_comments/count", post: post %>
-          </p>
-          <div id="like_buttons_<%= post.id %>">
-            <%= render "public/likes/likes-btn", post: post %>
-          </div>
-        </div>
-        <div class="tag_list_box">
-          <% post.tags.each do |tag| %>
-            <%= link_to "#{tag.name}", tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
-          <% end %>
-        </div>
+      <div class="d-grid gap-2 my-2">
+        <%= link_to user_path(post.user) do %>
+          <%= image_tag post.user.get_profile_image(60, 60), class: "rounded-circle" %>
+          <%= post.user.name %>
+        <% end %>
+      </div>
+      <div class="my-2">
+        <p><%= post.body %></p>
       </div>
 
+      <div class="d-flex">
+        <p class="mr-3" id="post_comments_count">
+          <%= render "public/post_comments/count", post: post %>
+        </p>
+        <div id="like_buttons_<%= post.id %>">
+          <%= render "public/likes/likes-btn", post: post %>
+        </div>
+      </div>
+      <div class="tag_list_box">
+        <% post.tags.each do |tag| %>
+          <%= link_to "#{tag.name}", tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
+        <% end %>
+      </div>
     </div>
+
   </div>
 <% end %>
-<div class="pagination justify-content-center">
-  <%= paginate posts %>
-</div>

@@ -23,13 +23,13 @@ class Public::PostsController < ApplicationController
     @tag_list = Tag.all
 
     if params[:latest]
-      @posts = Post.includes(:photos).page(params[:page]).per(10).latest
+      @posts = Post.includes(:photos).page(params[:page]).per(8).latest
     elsif params[:old]
-      @posts = Post.includes(:photos).page(params[:page]).per(10).old
+      @posts = Post.includes(:photos).page(params[:page]).per(8).old
     elsif params[:popular]
-      @posts = Post.includes(:photos).page(params[:page]).per(10).popular
+      @posts = Post.includes(:photos).page(params[:page]).per(8).popular
     else
-      @posts = Post.includes(:photos).all.page(params[:page]).per(10).order(created_at: :DESC)
+      @posts = Post.includes(:photos).all.page(params[:page]).per(8).order(created_at: :DESC)
     end
   end
 
@@ -71,15 +71,16 @@ class Public::PostsController < ApplicationController
   end
 
   def search_tag
+    @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
     if params[:latest]
-      @posts = @tag.posts.page(params[:page]).per(10).latest
+      @posts = @tag.posts.page(params[:page]).per(8).latest
     elsif params[:old]
-      @posts = @tag.posts.page(params[:page]).per(10).old
+      @posts = @tag.posts.page(params[:page]).per(8).old
     elsif params[:popular]
-      @posts = @tag.posts.page(params[:page]).per(10).popular
+      @posts = @tag.posts.page(params[:page]).per(8).popular
     else
-      @posts = @tag.posts.page(params[:page]).per(10).order(created_at: :DESC)
+      @posts = @tag.posts.page(params[:page]).per(8).order(created_at: :DESC)
     end
   end
 

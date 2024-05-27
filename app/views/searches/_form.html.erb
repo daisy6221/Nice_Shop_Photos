@@ -1,8 +1,39 @@
 <% if user_signed_in? || admin_signed_in? %>
   <%= form_with url: search_path(content: params[:content], tag: params[:tag]), method: :get do |f| %>
-    <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post" }) %>
-    <%= f.text_field :content, placeholder: "テキストを入力" %>
-    <%= f.text_field :tag, placeholder: "タグ検索はこちら" %>
-    <%= f.submit "検索", class: "btn btn-sm btn-light border-dark" %>
+  <div class="form-group">
+    <div class="input-group">
+      <%= f.text_field :content, class: "form-control me-2", type: "search", placeholder: "テキストを入力" %>
+      <div class="input-group-append">
+        <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post" }), {}, { id: "model_select" } %>
+      </div>
+      <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </div>
+    <div id="tab_search_form" style="display: none;">
+      <%= f.text_field :tag, class: "form-control me-2", type: "search", placeholder: "タグ検索はこちら" %>
+    </div>
+  </div>
   <% end %>
 <% end %>
+
+<!--タブ検索フォームの処理-->
+<script>
+  document.addEventListener("turbolinks:load", function() {
+    var modelSelect = document.getElementById("model_select");
+    var tabSearchForm = document.getElementById("tab_search_form");
+
+    modelSelect.addEventListener("change", function() {
+      if (this.value === "post") {
+        tabSearchForm.style.display = "flex";
+      } else {
+        tabSearchForm.style.display = "none";
+      }
+    });
+
+    // 初期状態のチェック
+    if (modelSelect.value === "post") {
+      tabSearchForm.style.display = "block";
+    }
+  });
+</script>

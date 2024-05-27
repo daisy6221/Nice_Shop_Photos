@@ -9,6 +9,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.4",
     "bootstrap": "4.6.2",
+    "dotenv": "^16.4.5",
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
     "swiper": "9.4.1",

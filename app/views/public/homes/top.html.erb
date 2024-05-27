@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11 mx-auto">
+      <!--メインビジュアル-->
       <div class="swiper mt-2">
         <div class="swiper-wrapper">
           <div class="swiper-slide mx-auto">
@@ -22,42 +23,50 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </div>
-
+　　　<!--新着投稿一覧-->
       <div class="row mx-auto my-3">
-        <div class="d-flex">
-          <h3 class="my-3 mr-2">新着投稿一覧</h3>
-          <% @posts.each do |post| %>
-          <div class="card m-2">
-            <div class="card-img-top">
-              <%= link_to post_path(post) do %>
-                <%= image_tag post.photos.first.image.url, size: "233x150" %>
+        <div class="d-flex flex-column">
+          <!--新着投稿見出しfield-->
+          <div class="d-flex flex-row">
+            <h3 class="mr-5">新着投稿一覧</h3>
+            <div>
+              <% if user_signed_in? %>
+                <%= link_to "すべての投稿を見る", posts_path %>
+              <% else %>
+                <p>投稿を閲覧する場合は<%= link_to "Sign up", new_user_registration_path %></p>
               <% end %>
-            </div>
-            <div class="card-body gap-2">
-              <div class="mb-2">
-                <%= link_to post.title, post_path(post) %>
-              </div>
-              <%= link_to user_path(post.user) do %>
-                <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle" %>
-                <%= post.user.name %>
-              <% end %>
-              <div class="d-flex mt-2">
-                <p class="mr-3">コメント数: <%= post.post_comments.count %></p>
-                <p>いいね数: <%= post.likes.count %></p>
-              </div>
-              <div class="tag_list_box">
-                <% post.tags.each do |tag| %>
-                  <%= link_to "#{tag.name}", tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
-                <% end %>
-              </div>
             </div>
           </div>
-          <% end %>
-        </div>
-
-        <div class="d-grid gap-2">
-          <%= link_to "すべての投稿を見る", posts_path %>
-          <p>投稿を閲覧する場合は<%= link_to "Sign up", new_user_registration_path %></p>
+          <!--投稿表示field-->
+          <div class="col d-flex">
+            <% @posts.each do |post| %>
+              <div class="card m-2">
+                <div class="card-img-top">
+                  <%= link_to post_path(post) do %>
+                    <%= image_tag post.photos.first.image.url, size: "250x200" %>
+                  <% end %>
+                </div>
+                <div class="card-body gap-2">
+                  <div class="mb-2">
+                    <%= link_to post.title, post_path(post) %>
+                  </div>
+                  <%= link_to user_path(post.user) do %>
+                    <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle" %>
+                    <%= post.user.name %>
+                  <% end %>
+                  <div class="d-flex mt-2">
+                    <p class="mr-3">コメント数: <%= post.post_comments.count %></p>
+                    <p>いいね数: <%= post.likes.count %></p>
+                  </div>
+                  <div class="tag_list_box">
+                    <% post.tags.each do |tag| %>
+                      <%= link_to "#{tag.name}", tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
+                    <% end %>
+                  </div>
+               </div>
+            </div>
+            <% end %>
+          </div>
         </div>
       </div>
 

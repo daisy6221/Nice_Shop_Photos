@@ -1,24 +1,30 @@
-  <div class="header-content">
-   <ul class="flex p-3">
-     <%= link_to "Nice Shop Photos", (admin_signed_in? ? admin_top_path : root_path ), class: 'logo' %>
-     <div class="float-right">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">   
+    <%= link_to (admin_signed_in? ? admin_top_path : root_path ), class: "navbar-brand" do %>
+      <%= image_tag "top_logo.png", size: "120x120", alt: "ロゴ" %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
        <% if user_signed_in? %>
-         <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
-         <%= link_to "新規投稿", new_post_path, class: "btn btn-outline-primary" %>
-         <%= link_to "投稿一覧", posts_path, class: "btn btn-outline-primary" %>
-         <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-primary" %>
-         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary" %>
+         <li><%= link_to "Top", root_path, class: "nav-link rounded-pill" %></li>
+         <li><%= link_to "投稿一覧", posts_path, class: "nav-link rounded-pill" %></li>
+         <li><%= link_to "マイページ", user_path(current_user), class: "nav-link rounded-pill" %></li>
+         <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link rounded-pill" %></li>
        <% elsif admin_signed_in? %>
-         <%= link_to "会員一覧", admin_top_path, class: "btn btn-outline-primary" %>
-         <%= link_to "投稿一覧", admin_posts_path, class: "btn btn-outline-primary" %>
-         <%= link_to "タグ一覧", admin_tags_path, class: "btn btn-outline-primary" %>
-         <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary" %>
+         <li><%= link_to "会員一覧", admin_top_path, class: "nav-link rounded-pill" %></li>
+         <li><%= link_to "投稿一覧", admin_posts_path, class: "nav-link rounded-pill" %></li>
+         <li><%= link_to "タグ一覧", admin_tags_path, class: "nav-link rounded-pill" %></li>
+         <li><%= link_to "Log out", destroy_admin_session_path, method: :delete, class: "nav-link rounded-pill" %></li>
        <% else %>
-         <%= link_to "Top", root_path, class: "btn btn-outline-primary" %>
-         <%= link_to "About", about_path, class: "btn btn-outline-primary" %>
-         <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-primary" %>
-         <%= link_to "Log in", user_session_path, class: "btn btn-outline-primary" %>
+         <li class="border border-warning rounded-pill"><%= link_to "Top", root_path, class: "nav-link" %></li>
+         <li class="ml-2 mr-1 border border-warning rounded-pill"><%= link_to "About", about_path, class: "nav-link" %></li>
+         <li class="ml-1 mr-2 border border-warning rounded-pill"><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
+         <li class="border border-warning rounded-pill"><%= link_to "Log in", user_session_path, class: "nav-link" %></li>
        <% end %>
-     </div>
-   </ul>
+      </ul>
+    </div>
   </div>
+</nav>
