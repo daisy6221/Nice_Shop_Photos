@@ -50,8 +50,9 @@
         <div id="map"></div>
       </div>
     </div>
-
+    <!--コメント欄-->
     <div class="col-md-11 shadow-lg bg-white my-3 d-grid gap-2 mx-auto">
+      <h6 class="my-2">コメント一覧</h6>
       <div id="post_comments_content_<%= @post.id %>">
         <%= render "public/post_comments/index", post: @post %>
       </div>

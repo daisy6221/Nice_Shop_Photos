@@ -2,45 +2,50 @@
   <div class="row">
 
     <div class="col-md-11 shadow-lg bg-white my-3 mx-auto">
-      <div class="row d-flex m-2">
-        <h3><strong><%= @post.title %></strong></h3>
-        <div class="ml-auto">
-          <%= link_to "編集する", edit_admin_post_path, class: "btn btn-secondary" %>
+      <div class="row d-flex my-3 align-items-center">
+        <h4 class="ml-3"><strong><%= @post.title %></strong></h4>
+        <div class="ml-auto my-auto d-flex">
+          <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+          <p class="mx-3" id="post_comments_count">
+            <%= render "public/post_comments/count", post: @post %>
+          </p>
+          <p class="mr-3"><i class="fas fa-heart"></i>: <%= @post.likes.count %></p>
         </div>
       </div>
 
-      <div class="d-grid gap-2">
+      <div class="d-flex">
         <%= link_to admin_user_path(@user.name), class: "link" do %>
           <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
           <%= @user.name %>
         <% end %>
-          <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
-          <div class="d-flex">
-            <p>コメント数: <%= @post.post_comments.count %></p>
-            <p>いいね数: <%= @post.likes.count %></p>
-          </div>
-          <% @post_tag.each do |tag| %>
-            <i class="fas fa-tag"></i><%= tag.name %>
-          <% end %>
-
+        <%= link_to "編集する", edit_admin_post_path, class: "btn btn-secondary mx-2 my-auto" %>
       </div>
 
       <div class="photos-field my-3">
+        <h5 class="mb-2"><strong>Nice Photos</strong></h5>
         <% @post.photos.each do |img|%>
-          <%= image_tag img.image.url %>
+          <%= image_tag img.image.url, size: "300x250", class: "img-thumbnail" %>
         <% end %>
       </div>
 
-      <h6 class="my-2"><strong>ショップ名：</strong> <%= @post.shop_name %></h6>
-      <h6 class="my-2"><strong>住所：</strong> <%= @post.address %></h6>
-      <div class="my-2">
-        <h6 class="mb-2"><strong>おすすめポイント</strong></h6>
-        <p><%= safe_join(@post.body.split("\n"),tag(:br)) %></p>
+      <div class="my-5">
+        <h5 class="mb-2"><strong>おすすめポイント</strong></h5>
+        <p class="mb-2"><%= safe_join(@post.body.split("\n"),tag(:br)) %></p>
+        <% @post_tag.each do |tag| %>
+          <i class="fas fa-tag"></i><%= tag.name %>
+        <% end %>
       </div>
+      <h6 class="my-2"><strong>ショップ名：</strong> <%= @post.shop_name %></h6>
+      <h6 class="mb-2"><strong>住所：</strong> <%= @post.address %></h6>
     </div>
 
     <!--コメント機能管理者用-->
     <div class="col-md-11 shadow-lg bg-white my-3 mx-auto">
+      <h6 class="my-2">コメント一覧</h6>
+      <% unless @post.post_comments.exists? %>
+        <p>コメントはありません。</p>
+      <% end %>
+      <!--コメント一覧表示-->
       <% @post.post_comments.each do |post_comment| %>
         <div class="flex-row d-grid gap-2 my-3">
           <%= link_to admin_user_path(post_comment.user) do %>
