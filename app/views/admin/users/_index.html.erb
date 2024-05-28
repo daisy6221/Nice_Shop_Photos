@@ -17,7 +17,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to admin_user_path(user) do %>
+        <%= link_to admin_user_path(user), class: "link" do %>
           <%= user.name %>
         <% end %>
       </td>
@@ -31,5 +31,5 @@
   <% end %>
 </table>
 <div class="pagination justify-content-center">
-  <%= paginate users %>
+  <%= paginate users, theme: 'bootstrap-5' %>
 </div>

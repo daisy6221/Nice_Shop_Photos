@@ -55,8 +55,8 @@
           </div>
           <%= render "public/posts/index", posts: @records %>
         </div>
-        <div class="pagination justify-content-center">
-          <%= paginate @records %>
+        <div class="mt-3 mx-auto">
+          <%= paginate @records, theme: 'bootstrap-5' %>
         </div>
       </div>
     <% end %>

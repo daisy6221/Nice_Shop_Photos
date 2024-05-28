@@ -1,11 +1,11 @@
 <% if current_user != user%>
   <% if current_user.following?(user) %>
     <%= link_to user_relationships_path(user.name), method: :delete, class: "btn btn-info", remote: true do %>
-      フォロー解除する <i class="fa-solid fa-user-minus" aria-hidden="true"></i>
+      フォロー <i class="fa-solid fa-user-minus" aria-hidden="true"></i>
     <% end %>
   <% else %>
     <%= link_to user_relationships_path(user.name), method: :post, class: "btn btn-success", remote: true do %>
-      フォローする <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+      フォロー <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
     <% end %>
   <% end %>
 <% end %>
