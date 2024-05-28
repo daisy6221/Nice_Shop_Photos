@@ -17,12 +17,12 @@
         <% end %>
       </td>
       <td>
-        <%= link_to admin_post_path(post) do %>
+        <%= link_to admin_post_path(post), class: "link" do %>
           <%= post.title %>
         <% end %>
       </td>
       <td>
-        <%= link_to admin_user_path(post.user) do %>
+        <%= link_to admin_user_path(post.user), class: "link" do %>
           <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
           <%= post.user.name %>
         <% end %>
@@ -38,5 +38,5 @@
   <% end %>
 </table>
 <div class="pagination justify-content-center">
-  <%= paginate posts %>
+  <%= paginate posts, theme: 'bootstrap-5' %>
 </div>

@@ -2,11 +2,11 @@
   <%= form_with url: search_path(content: params[:content], tag: params[:tag]), method: :get do |f| %>
   <div class="form-group">
     <div class="input-group">
-      <%= f.text_field :content, class: "form-control me-2", type: "search", placeholder: "テキストを入力" %>
       <div class="input-group-append">
         <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post" }), {}, { id: "model_select" } %>
       </div>
-      <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
+      <%= f.text_field :content, class: "form-control me-2", type: "search", placeholder: "テキストを入力" %>
+      <%= button_tag type: 'submit', class: 'btn btn-custom text-light' do %>
         <i class="fas fa-search"></i>
       <% end %>
     </div>

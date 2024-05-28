@@ -2,62 +2,62 @@
   <div class="row">
 
     <div class="col-md-11 shadow-lg bg-white my-3 mx-auto">
-      <div class="row d-flex m-2">
-        <h3><strong><%= @post.title %></strong></h3>
-        <div class="ml-auto">
-          <% if @user.name == current_user.name %>
-            <%= link_to "編集する", edit_post_path, class: "btn btn-secondary" %>
-          <% end %>
+      <div class="row d-flex my-3 align-items-center">
+        <h4 class="ml-3"><strong><%= @post.title %></strong></h4>
+        <div class="ml-auto my-auto d-flex">
+          <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+          <p class="mx-3" id="post_comments_count">
+            <%= render "public/post_comments/count", post: @post %>
+          </p>
+          <div class="mr-3" id="like_buttons_<%= @post.id %>">
+            <%= render "public/likes/likes-btn", post: @post %>
+          </div>
         </div>
       </div>
 
-      <div class="d-grid gap-3">
-        <div class="d-flex">
-          <%= link_to user_path(@user.name) do %>
-            <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
-            <%= @user.name %>
-          <% end %>
-          <div class="my-auto mx-2" id="relationship">
+      <div class="d-flex">
+        <%= link_to user_path(@user.name), class: "link" do %>
+          <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
+          <%= @user.name %>
+        <% end %>
+        <% if @user.name == current_user.name %>
+          <%= link_to "編集する", edit_post_path, class: "btn btn-secondary mx-2 my-auto" %>
+        <% else %>
+          <div class="my-auto mx-2" id="relationship_<%= @user.id %>">
             <%= render "public/relationships/btn", user: @user %>
           </div>
-        </div>
-          <p class="mt-5">投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
-          <div class="d-flex">
-            <p class="mr-3" id="post_comments_count">
-              <%= render "public/post_comments/count", post: @post %>
-            </p>
-            <div id="like_buttons_<%= @post.id %>">
-              <%= render "public/likes/likes-btn", post: @post %>
-            </div>
-          </div>
-          <% @post_tag.each do |tag| %>
-            <%= link_to tag.name, tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
-          <% end %>
+        <% end %>
       </div>
 
       <div class="photos-field my-3">
+        <h5 class="mb-2"><strong>Nice Photos</strong></h5>
         <% @post.photos.each do |img|%>
           <%= image_tag img.image.url, size: "300x250", class: "img-thumbnail" %>
         <% end %>
       </div>
 
-      <h6 class="my-2"><strong>ショップ名：</strong> <%= @post.shop_name %></h6>
-      <div class="my-2">
-        <h6 class="mb-2"><strong>おすすめポイント</strong></h6>
-        <p><%= safe_join(@post.body.split("\n"),tag(:br)) %></p>
+      <div class="my-5">
+        <h5 class="mb-2"><strong>おすすめポイント</strong></h5>
+        <p class="mb-2"><%= safe_join(@post.body.split("\n"),tag(:br)) %></p>
+        <% @post_tag.each do |tag| %>
+          <%= link_to tag.name, tag_search_path(tag_id: tag.id), class: "btn btn-outline-secondary btn-sm" %>
+        <% end %>
       </div>
+
+      <h6 class="my-2"><strong>ショップ名：</strong> <%= @post.shop_name %></h6>
       <h6 class="mb-2"><strong>住所：</strong> <%= @post.address %></h6>
       <div class="row ml-1 mb-3">
         <div id="map"></div>
       </div>
     </div>
-
-      <div class="col-md-11 shadow-lg bg-white my-3 d-grid gap-2 mx-auto">
-        <div id="post_comments_content_<%= @post.id %>">
-          <%= render "public/post_comments/index", post: @post %>
-        </div>
-        <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+    <!--コメント欄-->
+    <div class="col-md-11 shadow-lg bg-white my-3 d-grid gap-2 mx-auto">
+      <h6 class="my-2">コメント一覧</h6>
+      <div id="post_comments_content_<%= @post.id %>">
+        <%= render "public/post_comments/index", post: @post %>
       </div>
+      <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+    </div>
 
   </div>
 </div>
@@ -89,6 +89,5 @@
       infowindow.open(map, marker);
     });
   }
-  </script>
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["Geocoding_API_Key"] %>&callback=initMap" async defer></script>
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["Geocoding_API_Key"] %>&callback=initMap" async defer></script>

@@ -68,3 +68,4 @@ gem "carrierwave"
 gem "mini_magick"
 gem 'active_storage_validations'
 gem 'geocoder'
+gem 'bootstrap5-kaminari-views', '~> 0.0.1'

@@ -35,9 +35,9 @@
           </div>
           <h3 class="my-3 text-center">Posts search for "<%= @content %> <%= @tag %>"</h3>
           <div class="col my-2 text-center">
-            <%= link_to "新しい順", search_path({ latest: "true", model: "post", content: @content, tag: @tag })  %>
-            |<%= link_to "古い順", search_path({ old: "true", model: "post", content: @content, tag: @tag })  %>
-            |<%= link_to "いいね順", search_path({ popular: "true", model: "post", content: @content, tag: @tag }) %>
+            <%= link_to "新しい順", search_path({ latest: "true", model: "post", content: @content, tag: @tag }), class: "link"  %>
+            |<%= link_to "古い順", search_path({ old: "true", model: "post", content: @content, tag: @tag }), class: "link"  %>
+            |<%= link_to "いいね順", search_path({ popular: "true", model: "post", content: @content, tag: @tag }), class: "link" %>
           </div>
           <%= render "admin/posts/index", posts: @records %>
         </div>
@@ -49,14 +49,14 @@
         <%= render "public/posts/sidebar", tag_list: @tag_list %>
         <div class="col-md-8">
           <div class="my-2 text-center">
-            <%= link_to "新しい順", search_path({ latest: "true", model: "post", content: @content, tag: @tag })  %>
-            |<%= link_to "古い順", search_path({ old: "true", model: "post", content: @content, tag: @tag })  %>
-            |<%= link_to "いいね順", search_path({ popular: "true", model: "post", content: @content, tag: @tag }) %>
+            <%= link_to "新しい順", search_path({ latest: "true", model: "post", content: @content, tag: @tag }), class: "link"  %>
+            |<%= link_to "古い順", search_path({ old: "true", model: "post", content: @content, tag: @tag }), class: "link"  %>
+            |<%= link_to "いいね順", search_path({ popular: "true", model: "post", content: @content, tag: @tag }), class: "link" %>
           </div>
           <%= render "public/posts/index", posts: @records %>
         </div>
-        <div class="pagination justify-content-center">
-          <%= paginate @records %>
+        <div class="mt-3 mx-auto">
+          <%= paginate @records, theme: 'bootstrap-5' %>
         </div>
       </div>
     <% end %>

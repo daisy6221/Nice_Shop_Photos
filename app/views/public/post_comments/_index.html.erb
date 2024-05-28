@@ -1,6 +1,6 @@
 <% post.post_comments.each do |post_comment| %>
   <div class="flex-row d-grid gap-2 my-3">
-    <%= link_to user_path(post_comment.user) do %>
+    <%= link_to user_path(post_comment.user), class: "link" do %>
       <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %>
       <%= post_comment.user.name %>
     <% end %>
