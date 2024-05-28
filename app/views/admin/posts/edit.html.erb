@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
-      <%= render "layouts/errors", obj: @post %>
+    <%= render "layouts/errors", obj: @post %>
+
+    <div class="col-md-11 mx-auto">
       <%= form_with model: @post, url: admin_post_path, method: :patch, locals: { photos: @post.photos } do |f| %>
-      <div class="col-md-11 mx-auto">
         <h3 class="my-3">編集画面</h3>
           <!--画像フォーム-->
         <div id="image-box">
@@ -57,8 +58,8 @@
           <%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
           <%= link_to "投稿を削除する", admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
         </div>
-      </div>
-      <% end %>
 
+      <% end %>
+    </div>
   </div>
 </div>
