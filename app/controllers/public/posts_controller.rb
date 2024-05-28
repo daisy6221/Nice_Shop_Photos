@@ -50,14 +50,14 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.includes(:photos).find(params[:id])
-    tag_list = params[:post][:name].split(',')
+    @tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
       # 更新時にタグを削除した場合の処理
       @old_relations = PostTag.where(post_id: @post.id)
       @old_relations.each do |relation|
         relation.delete
       end
-      @post.save_tag(tag_list)
+      @post.save_tag(@tag_list)
       redirect_to post_path(@post.id), notice: '投稿が更新されました'
     else
       render "edit"
