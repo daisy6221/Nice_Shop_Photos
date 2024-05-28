@@ -25,7 +25,7 @@
 - 同じ趣味の人とつながりたい時
 ​
 ## 設計書
-- ER図(./PR_ER図.png)
+![ER図](./PR_ER図.png)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
