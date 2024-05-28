@@ -25,7 +25,7 @@
 - 同じ趣味の人とつながりたい時
 ​
 ## 設計書
-
+- ER図(./PR_ER図.png)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -35,5 +35,5 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- ぱくたそ https://www.pakutaso.com(画像素材)
-- Canva https://www.canva.com(ロゴ作成)
+- ぱくたそ(画像素材) https://www.pakutaso.com
+- Canva(ロゴ作成) https://www.canva.com
