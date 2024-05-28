@@ -1,9 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11 mx-auto">
+      <div class="my-3">
+        <h3 class="top_title text-center"><strong>Welcome!</strong></h3>
+        <p class="top_title text-center">
+          Nice Shop Photosはお店の外観、内装を投稿できるサイトです。<br>
+          詳しくは<%= link_to "こちら", about_path, class: "link top_title" %>
+        </p>
+      </div>
       <!--メインビジュアル-->
       <div class="swiper mt-2">
         <div class="swiper-wrapper">
+
           <div class="swiper-slide mx-auto">
             <%= image_tag 'slide1.jpg', size: "1015x500" %>
           </div>
@@ -17,12 +25,11 @@
             <%= image_tag 'slide4.jpg', size: "1015x500" %>
           </div>
         </div>
-        <!-- ページネーションの要素 -->
-        <div class="swiper-pagination"></div>
         <!-- ナビゲーションボタン （前、次） -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </div>
+
 　　　<!--新着投稿一覧-->
       <div class="row mx-auto my-3">
         <div class="d-flex flex-column">
@@ -38,17 +45,17 @@
             </div>
           </div>
           <!--投稿表示field-->
-          <div class="col d-flex">
+          <div class="col d-flex top_post">
             <% @posts.each do |post| %>
-              <div class="card m-2">
+              <div class="card m-2" style="width: 18rem;">
                 <div class="card-img-top">
                   <%= link_to post_path(post) do %>
-                    <%= image_tag post.photos.first.image.url, size: "250x200" %>
+                    <%= image_tag post.photos.first.image.url, size: "287x200" %>
                   <% end %>
                 </div>
                 <div class="card-body gap-2">
                   <div class="mb-2">
-                    <%= link_to post.title, post_path(post), class: "link" %>
+                    <%= link_to truncate(post.title, length: 12), post_path(post), class: "link" %>
                   </div>
                   <%= link_to user_path(post.user), class: "link" do %>
                     <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle" %>

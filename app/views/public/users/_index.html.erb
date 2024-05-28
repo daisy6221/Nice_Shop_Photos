@@ -1,6 +1,6 @@
 <table class="table table-hover bg-white">
   <thead>
-    <tr>
+    <tr class="table-color">
       <th>プロフィール画像</th>
       <th>ユーザー名</th>
       <th>自己紹介</th>
@@ -20,7 +20,7 @@
           <%= user.name %>
         <% end %>
       </td>
-      <td><%= user.introduction %></td>
+      <td><%= truncate(user.introduction, length: 30) %></td>
       <td id ="relationship_<%= user.id %>">
         <% unless user.email == "guest@example.com" then %>
           <%= render "public/relationships/btn", user: user %>

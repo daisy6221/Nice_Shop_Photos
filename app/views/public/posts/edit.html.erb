@@ -1,15 +1,19 @@
 <div class="container">
   <div class="row">
-      <%= render "layouts/errors", obj: @post %>
-      <%= form_with model: @post, url: post_path, method: :patch, locals: { photos: @post.photos } do |f| %>
-      <div class="col-md-11 mx-auto">
+    <%= render "layouts/errors", obj: @post %>
+
+    <div class="col-md-11 mx-auto">
+    <%= form_with model: @post, url: post_path, method: :patch, locals: { photos: @post.photos } do |f| %>
         <h3 class="my-3">編集画面</h3>
           <!--画像フォーム-->
         <div id="image-box">
           <div id="previews">
-            <p class="mb-2">お店の写真(10枚まで投稿可) 必須</p>
+            <p class="mb-2">
+              お店の写真(10枚まで投稿可) 必須<br>
+              ※前回投稿されたデータはフォーム、プレビューでそれぞれ昇順に整列しております。<br>
+              変更する場合はフォームをクリックor削除してください。
+            </p>
             <% if @post.persisted? %>
-
               <% @post.photos.each_with_index do |img, i| %>
                 <%= image_tag img.image.url, data: { index: i }, width: "100", height: '100' %>
               <% end %>
@@ -59,8 +63,8 @@
           <%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
           <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
         </div>
-      </div>
-      <% end %>
+    <% end %>
+    </div>
 
   </div>
 </div>

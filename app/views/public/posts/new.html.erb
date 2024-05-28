@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
           <%= f.label "タグ (,で区切ると複数タグ登録できます)" %>
-          <%= f.text_field :name, class: "form-control" %>
+          <%= f.text_field :name, value: @tag_list, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :shop_name, "ショップ名" %>
@@ -32,12 +32,13 @@
         </div>
 
         <div class="form-group">
-          <%= f.text_field :address, class: "form-control", placeholder: "住所" %>
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address, class: "form-control", placeholder: "郵便番号を除き、都道府県から入力してください" %>
         </div>
 
         <div class="form-group">
           <%= f.label :body, "おすすめポイント" %>
-          <%= f.text_area :body, class: "form-control" %>
+          <%= f.text_area :body, class: "form-control", placeholder: "200字まで入力可能です" %>
         </div>
 
         <div class="my-2">
