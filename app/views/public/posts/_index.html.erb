@@ -1,5 +1,5 @@
 <% posts.each do |post| %>
-  <div class="col-md-8 d-flex shadow-lg bg-white my-3 no-gutters mx-auto">
+  <div class="col-md-8 d-flex shadow-lg bg-white p-2 my-3 no-gutters mx-auto">
 
     <div class="align-items-center my-auto">
       <%= link_to post_path(post), data: {turbolinks: false}, class: "link" do %>
@@ -10,7 +10,7 @@
     <div class="flex-column my-auto ml-3">
       <div class="align-text-center mb-2">
         <%= link_to post_path(post), data: {turbolinks: false}, class: "link" do %>
-          <h5><strong><%= post.title %></strong></h5>
+          <h5><strong><%= truncate(post.title, length: 12) %></strong></h5>
         <% end %>
       </div>
       <div class="d-grid gap-2 my-2">
@@ -20,7 +20,7 @@
         <% end %>
       </div>
       <div class="my-2">
-        <p><%= post.body %></p>
+        <p><%= truncate(post.body, length: 16) %></p>
       </div>
 
       <div class="d-flex">

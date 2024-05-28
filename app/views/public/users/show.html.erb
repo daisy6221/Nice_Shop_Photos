@@ -72,7 +72,7 @@
           <div class="flex-column my-auto ml-3">
             <div class="align-text-center mb-2">
               <%= link_to post_path(post), data: {"turbolinks" => false}, class: "link" do %>
-                <h5><strong><%= post.title %></strong></h5>
+                <h5><strong><%= truncate(post.title, length: 12) %></strong></h5>
               <% end %>
             </div>
             <div class="d-grid gap-2 my-2">
@@ -82,7 +82,7 @@
               <% end %>
             </div>
             <div class="my-2">
-              <p><%= post.body %></p>
+              <p><%= truncate(post.body, length: 18) %></p>
             </div>
             <div class="d-flex">
               <p class="mr-3">コメント数: <%= post.post_comments.count %></p>
@@ -100,9 +100,9 @@
         <% end %>
       </div>
 
-        <div class="pagination justify-content-center">
-          <%= paginate @posts %>
-        </div>
+      <div class="pagination justify-content-center">
+        <%= paginate @posts %>
+      </div>
 
     </div>
   </div>
