@@ -35,4 +35,5 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- ぱくたそ https://www.pakutaso.com
+- ぱくたそ https://www.pakutaso.com(画像素材)
+- Canva https://www.canva.com(ロゴ作成)
