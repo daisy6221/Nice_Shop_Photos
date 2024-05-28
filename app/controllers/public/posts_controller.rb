@@ -12,7 +12,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @tag_list = params[:post][:name].split(',')
     if @post.save
-      @post.save_tag(tag_list)
+      @post.save_tag(@tag_list)
       redirect_to post_path(@post.id)
     else
       render "new"
