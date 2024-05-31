@@ -20,7 +20,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @tag_list = Tag.all
+    @tag_list = Tag.limit(5).popular
 
     if params[:latest]
       @posts = Post.includes(:photos).page(params[:page]).per(8).latest
@@ -71,7 +71,7 @@ class Public::PostsController < ApplicationController
   end
 
   def search_tag
-    @tag_list = Tag.all
+    @tag_list = Tag.limit(5).popular
     @tag = Tag.find(params[:tag_id])
     if params[:latest]
       @posts = @tag.posts.page(params[:page]).per(8).latest

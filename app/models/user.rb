@@ -25,6 +25,7 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  # URLのユーザー名表示設定
   def to_param
     name
   end
