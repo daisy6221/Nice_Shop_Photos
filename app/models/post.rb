@@ -29,9 +29,9 @@ class Post < ApplicationRecord
 
   def self.search_for(content, tag)
     if tag.present?
-      Post.joins(:tags).where("title LIKE ? AND tags.name LIKE ?", "%#{content}%", "%#{tag}%")
+      Post.joins(:tags).where("title LIKE ? OR shop_name LIKE ? AND tags.name LIKE ?", "%#{content}%", "%#{content}%", "%#{tag}%")
     else
-      Post.where("title LIKE ?", "%#{content}%")
+      Post.where("title LIKE ? OR shop_name LIKE ?", "%#{content}%", "%#{content}%")
     end
   end
 
