@@ -8,8 +8,11 @@
           <!--画像フォーム-->
         <div id="image-box">
           <div id="previews">
-            <p class="mb-2">
-              お店の写真(10枚まで投稿可) 必須<br>
+            <div class="d-flex">
+              <p class="my-1 mr-2">お店の写真(10枚まで投稿可)</p>
+              <span class="btn btn-danger btn-sm">必須</span>
+            </div>
+            <p class="my-1">
               ※前回投稿されたデータはフォーム、プレビューでそれぞれ昇順に整列しております。<br>
               変更する場合はフォームをクリックor削除してください。
             </p>
@@ -20,7 +23,7 @@
             <% end %>
           </div>
           <%= f.fields_for :photos do |img| %>
-            <div data-index="<%= img.index %>" class="js-file_group">
+            <div data-index="<%= img.index %>" class="js-file_group mt-1">
               <%= img.file_field :image, class: 'js-file', id: "file-upload" %><br>
               <%= img.hidden_field :image_cache %>
               <span class="js-remove">削除</span>
@@ -30,7 +33,7 @@
             <% end %>
           <% end %>
           <% if @post.persisted? %>
-            <div data-index="<%= @post.photos.count %>" class="js-file_group">
+            <div data-index="<%= @post.photos.count %>" class="js-file_group mt-1">
               <%= file_field_tag :image, name: "post[photos_attributes][#{@post.photos.count}][image]", class: 'js-file' %>
               <div class="js-remove">削除</div>
             </div>
@@ -40,6 +43,7 @@
           <!--入力フォーム-->
         <div class="form-group">
           <%= f.label :title, "タイトル" %>
+          <span class="mb-2 btn btn-danger btn-sm">必須</span>
           <%= f.text_field :title, autofocus: true, class: "form-control" %>
         </div>
         <div class="form-group">
@@ -48,14 +52,17 @@
         </div>
         <div class="form-group">
           <%= f.label :shop_name, "ショップ名" %>
+          <span class="mb-2 btn btn-danger btn-sm">必須</span>
           <%= f.text_field :shop_name, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :address, "住所" %>
+          <span class="mb-2 btn btn-danger btn-sm">必須</span>
           <%= f.text_field :address, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :body, "おすすめポイント" %>
+          <span class="mb-2 btn btn-danger btn-sm">必須</span>
           <%= f.text_area :body, class: "form-control" %>
         </div>
 
