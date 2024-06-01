@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
   def search
-    @tag_list = Tag.all
+    @tag_list = Tag.limit(5).popular
     @model = params[:model]
     @content = params[:content]
     @tag = params[:tag]

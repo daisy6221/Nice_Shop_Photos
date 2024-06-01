@@ -1,6 +1,11 @@
 <% if user_signed_in? || admin_signed_in? %>
   <%= form_with url: search_path(content: params[:content], tag: params[:tag]), method: :get do |f| %>
   <div class="form-group">
+    <p class="mb-2">
+      下記のキーワードについて検索可能です。<br>
+      【ユーザー】ユーザー名<br>
+      【投稿】タイトル,ショップ名,タグ名
+    </p>
     <div class="input-group">
       <div class="input-group-append">
         <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post" }), {}, { id: "model_select" } %>

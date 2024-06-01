@@ -4,7 +4,7 @@
       <%= render "searches/form" %>
     </div>
 
-    <h5 class="mt-5 mb-3">現在登録されているタグ一覧</h5>
+    <h5 class="mt-5 mb-3">投稿数上位のタグ</h5>
     <div class="my-3">
       <% tag_list.each do |list| %>
         <%= link_to list.name, tag_search_path(tag_id: list.id), class: "btn btn-outline-secondary btn-sm" %>
