@@ -58,7 +58,7 @@
                     <%= link_to truncate(post.title, length: 12), post_path(post), class: "link" %>
                   </div>
                   <%= link_to user_path(post.user), class: "link" do %>
-                    <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle" %>
+                    <%= image_tag post.user.get_profile_image, class: "rounded-circle profile_image" %>
                     <%= post.user.name %>
                   <% end %>
                   <div class="d-flex mt-2">
