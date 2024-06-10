@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
 
     if @model == "user"
       user = User.search_for(@content)
-      @records = user.page(params[:page]).per(8)
+      @records = user.page(params[:page]).per(10)
     else
       post = Post.search_for(@content, @tag)
       if params[:latest]

@@ -61,11 +61,11 @@
         <!--ユーザーの投稿一覧-->
       <div class="row">
         <% @posts.each do |post| %>
-        <div class="col-md-8 d-flex shadow-lg my-3 bg-white no-gutters mx-auto">
+        <div class="col-md-8 d-flex shadow-lg my-3 bg-white no-gutters p-2 mx-auto">
 
           <div class="align-items-center my-auto">
             <%= link_to post_path(post), data: {"turbolinks" => false} do %>
-              <%= image_tag post.photos.first.image.url, size: "200x200" %>
+              <%= image_tag post.photos.first.image.url, class: "photo_content_thumbnail" %>
             <% end %>
           </div>
 

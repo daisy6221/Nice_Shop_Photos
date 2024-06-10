@@ -3,7 +3,7 @@
 
     <div class="align-items-center my-auto">
       <%= link_to post_path(post), data: {turbolinks: false}, class: "link" do %>
-        <%= image_tag post.photos.first.image.url, size: "200x200" %>
+        <%= image_tag post.photos.first.image.url, class: "photo_content_thumbnail" %>
       <% end %>
     </div>
 
