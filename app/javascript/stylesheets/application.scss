@@ -44,6 +44,7 @@ footer {
     --swiper-navigation-color: #FFFFFF;
 }
 
+// 画像表示サイズ設定
 .profile_image_userpage {
   width: 200px;
   height: 200px;
@@ -84,18 +85,12 @@ footer {
   font-size: 12px;
 }
 
-.pagination>li>a {
-  border: none;     /*枠線をなくす*/
-  color: #696969;   /*文字の色を変える*/
+.pagination > li > a {
+  border: none; 
+  color: #696969; 
 }
 
-// /* 表示しているページ番号のデザイン */
-// .pagination>.active>a {
-//   background: #93c9ff;     /*背景の色を変える*/
-//   border-radius: 15px;     /*角を丸くする*/
-// }
-
-/*ホバー時のデザイン*/
-// .pagination>li>a:hover {
-//   border-radius: 15px;    /*角を丸くする*/
-// }
+/* 表示しているページ番号のデザイン */
+.pagination > .active > .page-link {
+  background-color: #73e6d2; 
+}

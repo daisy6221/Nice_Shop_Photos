@@ -4,7 +4,7 @@
     <%= post.likes.count %>
   <% end %>
 <% else %>
-  <%= link_to post_likes_path(post), method: :post, remote: true do %>
+  <%= link_to post_likes_path(post), method: :post, style: "color: #73e6d2;", remote: true do %>
     <i class="fas fa-heart fa-lg" aria-hidden="true"></i>
     <%= post.likes.count %>
   <% end %>
