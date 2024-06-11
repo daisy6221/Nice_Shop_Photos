@@ -5,7 +5,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def show
-    @posts = @user.posts.page(params[:page]).per(10)
+    @posts = @user.posts.page(params[:page]).per(8)
   end
 
   def edit
@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
 
   def likes
     likes = Like.where(user_id: @user.id).pluck(:post_id)
-    @like_post = Post.where(id: likes).page(params[:page]).per(10)
+    @like_post = Post.where(id: likes).page(params[:page]).per(8)
   end
 
   private

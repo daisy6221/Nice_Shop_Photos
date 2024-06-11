@@ -3,7 +3,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  process resize_to_limit: [300,300]
+  # process resize_to_limit: [300,300]
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production? # 本番環境の場合
     storage :fog
@@ -34,9 +34,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   process resize_to_fit: [50, 50]
   # end
 
-  # version :middle do
-  #   process resize_to_fill: [250, 200, "Center"]
-  # end
+  version :middle do
+    process resize_to_fill: [300, 300, "Center"]
+  end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:

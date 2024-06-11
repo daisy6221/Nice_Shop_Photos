@@ -13,7 +13,7 @@
     <tr>
       <td>
         <%= link_to admin_post_path(post) do %>
-          <%= image_tag post.photos.first.image.url, size: "150x150" %>
+          <%= image_tag post.photos.first.image.url, class: "photo_content_thumbnail" %>
         <% end %>
       </td>
       <td>
@@ -23,7 +23,7 @@
       </td>
       <td>
         <%= link_to admin_user_path(post.user), class: "link" do %>
-          <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
+          <%= image_tag post.user.get_profile_image, class: "rounded-circle profile_image" %>
           <%= post.user.name %>
         <% end %>
       </td>

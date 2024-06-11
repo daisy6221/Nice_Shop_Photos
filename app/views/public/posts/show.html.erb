@@ -17,7 +17,7 @@
 
       <div class="d-flex">
         <%= link_to user_path(@user.name), class: "link" do %>
-          <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
+          <%= image_tag @user.get_profile_image, class: "rounded-circle profile_image" %>
           <%= @user.name %>
         <% end %>
         <% if @user.name == current_user.name %>
@@ -32,7 +32,7 @@
       <div class="photos-field my-3">
         <h5 class="mb-2"><strong>Nice Photos</strong></h5>
         <% @post.photos.each do |img|%>
-          <%= image_tag img.image.url, size: "300x250", class: "img-thumbnail" %>
+          <%= image_tag img.image.url, class: "img-thumbnail photo_content_show" %>
         <% end %>
       </div>
 

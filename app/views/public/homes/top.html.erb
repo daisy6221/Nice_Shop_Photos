@@ -50,7 +50,7 @@
               <div class="card m-2" style="width: 18rem;">
                 <div class="card-img-top">
                   <%= link_to post_path(post) do %>
-                    <%= image_tag post.photos.first.image.url, size: "287x200" %>
+                    <%= image_tag post.photos.first.image.url, class: "photo_content_thumbnail_top" %>
                   <% end %>
                 </div>
                 <div class="card-body gap-2">
@@ -58,7 +58,7 @@
                     <%= link_to truncate(post.title, length: 12), post_path(post), class: "link" %>
                   </div>
                   <%= link_to user_path(post.user), class: "link" do %>
-                    <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle" %>
+                    <%= image_tag post.user.get_profile_image, class: "rounded-circle profile_image" %>
                     <%= post.user.name %>
                   <% end %>
                   <div class="d-flex mt-2">

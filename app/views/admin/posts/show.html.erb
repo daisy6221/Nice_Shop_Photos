@@ -15,7 +15,7 @@
 
       <div class="d-flex">
         <%= link_to admin_user_path(@user.name), class: "link" do %>
-          <%= image_tag @user.get_profile_image(80, 80), class: "rounded-circle" %>
+          <%= image_tag @user.get_profile_image, class: "rounded-circle profile_image" %>
           <%= @user.name %>
         <% end %>
         <%= link_to "編集する", edit_admin_post_path, class: "btn btn-secondary mx-2 my-auto" %>
@@ -24,7 +24,7 @@
       <div class="photos-field my-3">
         <h5 class="mb-2"><strong>Nice Photos</strong></h5>
         <% @post.photos.each do |img|%>
-          <%= image_tag img.image.url, size: "300x250", class: "img-thumbnail" %>
+          <%= image_tag img.image.url, class: "img-thumbnail photo_content_show" %>
         <% end %>
       </div>
 
@@ -49,7 +49,7 @@
       <% @post.post_comments.each do |post_comment| %>
         <div class="flex-row d-grid gap-2 my-3">
           <%= link_to admin_user_path(post_comment.user) do %>
-            <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %>
+            <%= image_tag post_comment.user.get_profile_image, class: "rounded-circle profile_image" %>
             <%= post_comment.user.name %>
           <% end %>
           <div class="d-flex align-items-center">
