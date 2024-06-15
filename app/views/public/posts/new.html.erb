@@ -4,7 +4,7 @@
       <%= render "layouts/errors", obj: @post %>
       <%= form_with model: @post, url: posts_path do |f| %>
         <h3 class="my-3">新規投稿画面</h3>
-          <!--画像フォーム-->
+        <!--画像フォーム-->
         <div id="image-box">
           <div class="d-flex">
             <p class="my-1 mr-2">お店の写真(10枚まで投稿可)</p>
@@ -22,30 +22,38 @@
 
           <!--入力フォーム-->
         <div class="mt-3 form-group">
-          <%= f.label :title, "タイトル", placeholder: "30字まで入力可能です" %>
-          <span class="mb-2 btn btn-danger btn-sm">必須</span>
+          <div class="d-flex">
+            <%= f.label :title, "タイトル", placeholder: "30字まで入力可能です" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
           <%= f.text_field :title, autofocus: true, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label "タグ (,で区切ると複数タグ登録できます)" %>
+          <%= f.label :tag, "タグ (,で区切ると複数タグ登録できます)" %>
           <%= f.text_field :name, value: @tag_list, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :shop_name, "ショップ名" %>
-          <span class="mb-2 btn btn-danger btn-sm">必須</span>
+          <div class="d-flex">
+            <%= f.label :shop_name, "ショップ名" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
           <%= f.text_field :shop_name, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :address, "住所" %>
-          <span class="mb-2 btn btn-danger btn-sm">必須</span>
+          <div class="d-flex">
+            <%= f.label :address, "住所" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
           <%= f.text_field :address, class: "form-control", placeholder: "郵便番号を除き、都道府県から入力してください" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :body, "おすすめポイント" %>
-          <span class="mb-2 btn btn-danger btn-sm">必須</span>
-          <%= f.text_area :body, class: "form-control", placeholder: "200字まで入力可能です" %>
+          <div class="d-flex">
+            <%= f.label :body, "おすすめポイント" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
+          <%= f.text_area :body, class: "form-control", placeholder: "3字以上200字まで入力可能です" %>
         </div>
 
         <div class="my-2">

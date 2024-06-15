@@ -1,11 +1,10 @@
 <div class="container">
   <div class="row">
-    <%= render "layouts/errors", obj: @post %>
-
     <div class="col-md-11 mx-auto">
+    <%= render "layouts/errors", obj: @post %>
     <%= form_with model: @post, url: post_path, method: :patch, locals: { photos: @post.photos } do |f| %>
-        <h3 class="my-3">編集画面</h3>
-          <!--画像フォーム-->
+      <h3 class="my-3">編集画面</h3>
+        <!--画像フォーム-->
         <div id="image-box">
           <div id="previews">
             <div class="d-flex">
@@ -40,29 +39,37 @@
           <% end %>
         </div>
 
-          <!--入力フォーム-->
+        <!--入力フォーム-->
         <div class="form-group">
-          <%= f.label :title, "タイトル" %>
-          <span class="mb-2 btn btn-danger btn-sm">必須</span>
+          <div class="d-flex">
+            <%= f.label :title, "タイトル", placeholder: "30字まで入力可能です" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
           <%= f.text_field :title, autofocus: true, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label "タグ (,で区切ると複数タグ登録できます)" %>
+          <%= f.label :tag, "タグ (,で区切ると複数タグ登録できます)" %>
           <%= f.text_field :name, value: @tag_list, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :shop_name, "ショップ名" %>
-          <span class="mb-2 btn btn-danger btn-sm">必須</span>
+          <div class="d-flex">
+            <%= f.label :shop_name, "ショップ名" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
           <%= f.text_field :shop_name, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :address, "住所" %>
-          <span class="mb-2 btn btn-danger btn-sm">必須</span>
+          <div class="d-flex">
+            <%= f.label :address, "住所" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
           <%= f.text_field :address, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :body, "おすすめポイント" %>
-          <span class="mb-2 btn btn-danger btn-sm">必須</span>
+          <div class="d-flex">
+            <%= f.label :body, "おすすめポイント" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
           <%= f.text_area :body, class: "form-control" %>
         </div>
 
