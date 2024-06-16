@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row mx-2">
+    <%= render "public/shared/error_messages", resource: resource %>
     <div class="col-md-5 col-sm-10 mx-sm-auto text-center bg-white shadow-lg my-5">
     <h2>Sign up</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "public/shared/error_messages", resource: resource %>
 
       <div class="field">
         <%= f.label :name %>

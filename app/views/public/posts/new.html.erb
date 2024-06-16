@@ -14,7 +14,6 @@
           <%= f.fields_for :photos do |img| %>
             <div data-index="<%= img.index %>" class="js-file_group mt-1">
               <%= img.file_field :image, class: 'js-file', id: "file-upload" %><br>
-              <%= img.hidden_field :image_cache %>
               <span class="js-remove">削除</span>
             </div>
           <% end %>

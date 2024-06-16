@@ -15,6 +15,7 @@ class Public::PostsController < ApplicationController
       @post.save_tag(@tag_list)
       redirect_to post_path(@post.id)
     else
+      @post.photos.new
       render "new"
     end
   end
