@@ -8,20 +8,14 @@ ja:
       truncate: "..."
   activerecord:
     attributes:
-      user:
-        email: 'メールアドレス'
-        password: 'パスワード'
-        password_confirmation: 'パスワード確認用'
-        name: 'ユーザー名'
-      admin:
-        name: 'ユーザー名'
-        password: 'パスワード'
       post:
         title: 'タイトル'
         shop_name: 'ショップ名'
         address: '住所'
         body: 'おすすめポイント'
         photos: '写真'
+      photos:
+        image: '画像データ'
   errors:
     messages:
       blank: 'を登録してください'

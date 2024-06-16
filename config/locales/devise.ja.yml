@@ -1,0 +1,97 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        confirmation_sent_at: パスワード確認送信時刻
+        confirmation_token: パスワード確認用トークン
+        confirmed_at: パスワード確認時刻
+        created_at: 作成日
+        current_password: 現在のパスワード
+        current_sign_in_at: 現在のログイン時刻
+        current_sign_in_ip: 現在のログインIPアドレス
+        email: Eメール
+        encrypted_password: 暗号化パスワード
+        failed_attempts: 失敗したログイン試行回数
+        last_sign_in_at: 最終ログイン時刻
+        last_sign_in_ip: 最終ログインIPアドレス
+        locked_at: ロック時刻
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        reset_password_sent_at: パスワードリセット送信時刻
+        reset_password_token: パスワードリセット用トークン
+        sign_in_count: ログイン回数
+        unconfirmed_email: 未確認Eメール
+        updated_at: 更新日
+      admin:
+        name: ユーザー名
+        password: パスワード
+    models:
+      user: ユーザー
+  devise:
+    confirmations:
+      confirmed: メールアドレスが確認できました。
+      new:
+        resend_confirmation_instructions: アカウント確認メール再送
+      send_instructions: アカウントの有効化について数分以内にメールでご連絡します。
+      send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
+    failure:
+      already_authenticated: すでにログインしています。
+      inactive: アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。
+      invalid: "%{authentication_keys}またはパスワードが違います。"
+      not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
+      timeout: セッションがタイムアウトしました。もう一度ログインしてください。
+      unauthenticated: ログインもしくはアカウント登録してください。
+      unconfirmed: メールアドレスの本人確認が必要です。
+    mailer:
+      confirmation_instructions:
+        action: メールアドレスの確認
+        greeting: "%{recipient}様"
+        instruction: 以下のリンクをクリックし、メールアドレスの確認手続を完了させてください。
+        subject: メールアドレス確認メール
+      email_changed:
+        greeting: こんにちは、%{recipient}様。
+    omniauth_callbacks:
+      failure: "%{kind} アカウントによる認証に失敗しました。理由：（%{reason}）"
+      success: "%{kind} アカウントによる認証に成功しました。"
+    registrations:
+      destroyed: アカウントを削除しました。またのご利用をお待ちしております。
+      edit:
+        are_you_sure: 本当によろしいですか？
+        cancel_my_account: アカウント削除
+        currently_waiting_confirmation_for_email: "%{email} の確認待ち"
+        leave_blank_if_you_don_t_want_to_change_it: 空欄のままなら変更しません
+        title: "%{resource}編集"
+        unhappy: 気に入りません
+        update: 更新
+      new:
+        sign_up: アカウント登録
+      signed_up: アカウント登録が完了しました。
+      signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
+      signed_up_but_unconfirmed: 本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。
+      update_needs_confirmation: アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。
+      updated: アカウント情報を変更しました。
+    sessions:
+      already_signed_out: 既にログアウト済みです。
+      new:
+        sign_in: ログイン
+      signed_in: ログインしました。
+      signed_out: ログアウトしました。
+    shared:
+      links:
+        back: 戻る
+        didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか？
+        forgot_your_password: パスワードを忘れましたか？
+        sign_in: ログイン
+        sign_in_with_provider: "%{provider}でログイン"
+        sign_up: アカウント登録
+      minimum_password_length: "（%{count}字以上）"
+  errors:
+    messages:
+      already_confirmed: は既に登録済みです。ログインしてください。
+      confirmation_period_expired: の期限が切れました。%{period} までに確認する必要があります。 新しくリクエストしてください。
+      not_found: は見つかりませんでした。
+      not_locked: はロックされていません。
+      not_saved:
+        one: エラーが発生したため %{resource} は保存されませんでした。
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
