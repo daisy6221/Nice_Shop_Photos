@@ -31,21 +31,19 @@
       </div>
 
 　　　<!--新着投稿一覧-->
-      <div class="row mx-auto my-3">
+      <div class="row justify-content-center my-3">
         <div class="d-flex flex-column">
           <!--新着投稿見出しfield-->
-          <div class="d-flex flex-row">
-            <h3 class="mr-5">新着投稿一覧</h3>
-            <div>
+          <div class="d-flex flex-row justify-content-center top_post_title">
+            <h3 class="mr-3">新着投稿一覧</h3>
               <% if user_signed_in? %>
-                <%= link_to "すべての投稿を見る", posts_path, class: "link" %>
+                <p class="mt-1"><%= link_to "すべての投稿を見る", posts_path, class: "link" %></p>
               <% else %>
-                <p>投稿を閲覧する場合は<%= link_to "Sign up", new_user_registration_path, class: "link" %></p>
+                <p class="mt-1">投稿を閲覧する場合は<%= link_to "Sign up", new_user_registration_path, class: "link" %></p>
               <% end %>
-            </div>
           </div>
           <!--投稿表示field-->
-          <div class="col d-flex top_post">
+          <div class="col d-flex mx-auto top_post">
             <% @posts.each do |post| %>
               <div class="card m-2" style="width: 18rem;">
                 <div class="card-img-top">

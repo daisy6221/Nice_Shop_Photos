@@ -122,3 +122,24 @@ footer {
   color: #930403;
   border: solid 1px #930403;
 }
+
+@media screen and (max-width: 944px) {
+  main {
+    width: 100%;
+    margin: 15px auto;
+    display: block;
+  }
+  .swiper {
+    display: none !important;
+  }
+  .top_post {
+    flex-direction: column;
+  }
+  .top_post > .card {
+    width: 100%;
+    margin: 30px auto;
+  }
+  footer {
+    width: 100%;
+  }
+}
