@@ -2,7 +2,7 @@
   <div class="row mx-auto">
     <%= render 'layouts/errors', obj: @user %>
     <div class="col-md-11 my-3">
-      <h4>ユーザー情報編集</h4>
+      <h4 style="color: #696969;">ユーザー情報編集</h4>
 
       <%= form_with model: @user, url: user_path, method: :patch do |f| %>
 

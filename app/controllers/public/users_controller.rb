@@ -16,7 +16,7 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(current_user), notice: "ユーザー情報が更新されました"
     else
-      redirect_to request.referer, notice: "更新に失敗しました。入力内容を見直してください"
+      redirect_to request.referer, notice: "ユーザー名が既に登録済みもしくは誤りがあります。再度入力してください。"
     end
   end
 

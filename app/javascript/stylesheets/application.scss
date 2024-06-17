@@ -39,6 +39,10 @@ footer {
   color: #FFFFFF;
 }
 
+.search_comment {
+  font-size: 12px;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
     --swiper-navigation-color: #FFFFFF;
@@ -81,16 +85,69 @@ footer {
   object-fit: cover;
 }
 
-.search_comment {
-  font-size: 12px;
-}
-
+// ページネーション設定
 .pagination > li > a {
-  border: none; 
-  color: #696969; 
+  border: none;
+  color: #696969;
 }
 
 /* 表示しているページ番号のデザイン */
 .pagination > .active > .page-link {
-  background-color: #73e6d2; 
+  background-color: #73e6d2;
+}
+
+// メッセージ表示
+.error_box {
+  border-radius: 15px;
+  background-color: #ffe4e1;
+  color: #930403;
+  border: solid 1px #930403;
+}
+
+.flash-message {
+  width: 50%;
+  margin: 15px auto;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.flash-message.notice {
+  background-color: #d5edd9;
+  color: #228b22;
+  border: solid 1px #228b22;
+}
+
+.flash-message.alert {
+  background-color: #ffe4e1;
+  color: #930403;
+  border: solid 1px #930403;
+}
+
+@media screen and (max-width: 944px) {
+  main {
+    width: 100%;
+    margin: 15px auto;
+    display: block;
+  }
+  .swiper {
+    display: none !important;
+  }
+  .top_post_title {
+    display: block !important;
+    text-align: center;
+  }
+  .top_post {
+    flex-direction: column;
+  }
+  .top_post > .card {
+    width: 100%;
+    margin: 30px auto;
+  }
+  #map {
+    width: 300px;
+    height: calc(100vh - 88px - 179px);
+  }
+  footer {
+    width: 100%;
+  }
 }

@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row mx-2">
+    <%= render "public/shared/error_messages", resource: resource %>
     <div class="col-md-5 col-sm-10 mx-sm-auto text-center bg-white shadow-lg my-5">
     <h2>Sign up</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "public/shared/error_messages", resource: resource %>
 
-      <div class="field">
+      <div class="mt-3 field">
         <%= f.label :name %>
         <p>(半角英数字3~30字)</p>
         <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
@@ -28,7 +28,7 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
 
-      <div class="d-grid gap-2 my-2">
+      <div class="d-grid gap-2 my-5">
         <%= f.submit "Sign up", class: 'btn btn-success' %>
         <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-secondary' %>
       </div>

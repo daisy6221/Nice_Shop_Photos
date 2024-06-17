@@ -19,11 +19,12 @@
       <%= render 'layouts/header' %>
     </header>
     <main class="flex-grow-1">
-      <p id="notice"><%= notice %></p>
-      <p id="alert"><%= alert %></p>
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
       <%= yield %>
     </main>
-    <footer class="text-center">
+    <footer class="text-center w-100">
       <%= render 'layouts/footer' %>
     </footer>
   </body>

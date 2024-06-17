@@ -1,0 +1,25 @@
+ja:
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."
+  activerecord:
+    attributes:
+      post:
+        title: 'タイトル'
+        shop_name: 'ショップ名'
+        address: '住所'
+        body: 'おすすめポイント'
+        photos: '写真'
+      photos:
+        image: '画像データ'
+  errors:
+    messages:
+      blank: 'を登録してください'
+      invalid: 'は不適切な値です'
+      too_long: 'は%{count}文字以内で入力してください'
+      too_short: 'は%{count}文字以上で入力してください'
+      wrong_length: 'は%{count}文字で入力してください'
