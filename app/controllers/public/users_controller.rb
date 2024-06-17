@@ -16,7 +16,7 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(current_user), notice: "ユーザー情報が更新されました"
     else
-      redirect_to request.referer, notice: "ユーザー名が既に登録済みもしくは誤りがあります。再度入力してください。"
+      redirect_to request.referer, alert: "ユーザー名が既に登録済みもしくは誤りがあります。再度入力してください。"
     end
   end
 
@@ -38,13 +38,13 @@ class Public::UsersController < ApplicationController
 
   def ensure_correct_user
     unless @user == current_user
-      redirect_to user_path(@user), notice: "ユーザー情報が一致しませんでした"
+      redirect_to user_path(@user), alert: "ユーザー情報が一致しませんでした"
     end
   end
 
   def ensure_guest_user
     if @user.email == "guest@example.com"
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to user_path(current_user) , alert: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
 

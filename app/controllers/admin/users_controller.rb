@@ -12,7 +12,7 @@ class Admin::UsersController < ApplicationController
     if @user.update(admin_user_params)
       redirect_to admin_user_path(@user), notice: "ユーザー情報を更新しました"
     else
-      redirect_to request.referer, notice: "更新に失敗しました。入力内容を見直してください"
+      redirect_to request.referer, alert: "更新に失敗しました。入力内容を見直してください"
     end
   end
 

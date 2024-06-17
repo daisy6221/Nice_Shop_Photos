@@ -90,7 +90,7 @@ class Public::PostsController < ApplicationController
   def ensure_correct_user
     @post = Post.find(params[:id])
     unless @post.user == current_user
-      redirect_to posts_path, notice: "ユーザー情報が一致しませんでした"
+      redirect_to posts_path, alert: "ユーザー情報が一致しませんでした"
     end
   end
 
