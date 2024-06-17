@@ -1,6 +1,6 @@
-<h2>Follower Users</h2>
+<h2 class="text-center" style="color: #696969;">Follower Users</h2>
 <% if @users.exists? %>
   <%= render 'public/users/index', users: @users %>
 <% else %>
-  <p>ユーザーはいません</p>
+  <p class="text-center">ユーザーはいません</p>
 <% end %>

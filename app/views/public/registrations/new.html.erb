@@ -6,7 +6,7 @@
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-      <div class="field">
+      <div class="mt-3 field">
         <%= f.label :name %>
         <p>(半角英数字3~30字)</p>
         <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
@@ -28,7 +28,7 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
 
-      <div class="d-grid gap-2 my-2">
+      <div class="d-grid gap-2 my-5">
         <%= f.submit "Sign up", class: 'btn btn-success' %>
         <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-secondary' %>
       </div>

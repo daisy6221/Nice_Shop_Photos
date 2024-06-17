@@ -9,7 +9,7 @@
             <%= render "searches/form" %>
           </div>
           <% if @records.present? %>
-            <h3 class="my-3 text-center">"<%= @content %>" ユーザー検索結果</h3>
+            <h3 class="my-3 text-center" style="color: #696969;">"<%= @content %>" ユーザー検索結果</h3>
             <%= render "admin/users/index", users: @records %>
           <% else %>
             <p class="text-center">該当するユーザーデータはありません。</p>
@@ -24,7 +24,7 @@
             <%= render "searches/form" %>
           </div>
           <% if @records.present? %>
-            <h3 class="my-3 text-center">"<%= @content %>" ユーザー検索結果</h3>
+            <h3 class="my-3 text-center" style="color: #696969;">"<%= @content %>" ユーザー検索結果</h3>
             <%= render "public/users/index", users: @records %>
           <% else %>
             <p class="text-center">該当するユーザーデータはありません。</p>
@@ -42,7 +42,7 @@
             <%= render "searches/form" %>
           </div>
           <% if @records.present? %>
-            <h3 class="my-3 text-center">"<%= @content %> <%= @tag %>" 投稿の検索結果</h3>
+            <h3 class="my-3 text-center" style="color: #696969;">"<%= @content %> <%= @tag %>" 投稿の検索結果</h3>
             <div class="col my-2 text-center">
               <%= link_to "新しい順", search_path({ latest: "true", model: "post", content: @content, tag: @tag }), class: "link"  %>
               |<%= link_to "古い順", search_path({ old: "true", model: "post", content: @content, tag: @tag }), class: "link"  %>
@@ -56,7 +56,7 @@
       </div>
     <% else %>
     <!--user側：投稿検索結果-->
-      <h3 class="my-3 text-center">"<%= @content %> <%= @tag %>" 投稿の検索結果</h3>
+      <h3 class="my-3 text-center" style="color: #696969;">"<%= @content %> <%= @tag %>" 投稿の検索結果</h3>
       <div class="row no-gutters">
         <%= render "public/posts/sidebar", tag_list: @tag_list %>
         <div class="col-md-8">

@@ -29,8 +29,8 @@
         <% end %>
       </div>
 
-      <div class="photos-field my-3">
-        <h5 class="mb-2"><strong>Nice Photos</strong></h5>
+      <h5 class="mt-5 mb-2 text-center"><strong>Nice Photos</strong></h5>
+      <div class="row justify-content-center photos-field my-3">
         <% @post.photos.each do |img|%>
           <%= image_tag img.image.url, class: "img-thumbnail photo_content_show" %>
         <% end %>

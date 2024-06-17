@@ -1,5 +1,5 @@
 <div class="container">
-  <h4 class="text-center">いいねした投稿一覧</h4>
+  <h4 class="text-center" style="color: #696969;">いいねした投稿一覧</h4>
   <% if @like_post.exists? %>
     <%= render "public/posts/index", posts: @like_post %>
   <% else %>

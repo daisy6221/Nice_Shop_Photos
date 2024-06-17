@@ -3,7 +3,7 @@
     <div class="col-md-11 mx-auto">
       <%= render "layouts/errors", obj: @post %>
       <%= form_with model: @post, url: posts_path do |f| %>
-        <h3 class="my-3">新規投稿画面</h3>
+        <h3 class="my-3" style="color: #696969;">新規投稿画面</h3>
         <!--画像フォーム-->
         <div id="image-box">
           <div class="d-flex">
@@ -55,7 +55,7 @@
           <%= f.text_area :body, class: "form-control", placeholder: "3字以上200字まで入力可能です" %>
         </div>
 
-        <div class="my-2">
+        <div class="mt-2 mb-5">
           <%= f.submit "投稿する", class: "btn btn-primary" %>
         </div>
       <% end %>

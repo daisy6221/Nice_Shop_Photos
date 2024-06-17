@@ -132,12 +132,20 @@ footer {
   .swiper {
     display: none !important;
   }
+  .top_post_title {
+    display: block !important;
+    text-align: center;
+  }
   .top_post {
     flex-direction: column;
   }
   .top_post > .card {
     width: 100%;
     margin: 30px auto;
+  }
+  #map {
+    width: 300px;
+    height: calc(100vh - 88px - 179px);
   }
   footer {
     width: 100%;

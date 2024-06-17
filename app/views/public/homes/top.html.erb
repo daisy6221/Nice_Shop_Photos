@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-md-11 mx-auto">
       <div class="my-3">
         <h3 class="top_title text-center"><strong>Welcome!</strong></h3>
         <p class="top_title text-center">
           Nice Shop Photosはお店の外観、内装を投稿できるサイトです。<br>
-          詳しくは<%= link_to "こちら", about_path, class: "link top_title" %>
+          詳しくは<%= link_to "こちら", about_path, class: "link", style: "color: #696969;" %>
         </p>
       </div>
       <!--メインビジュアル-->
@@ -35,7 +35,7 @@
         <div class="d-flex flex-column">
           <!--新着投稿見出しfield-->
           <div class="d-flex flex-row justify-content-center top_post_title">
-            <h3 class="mr-3">新着投稿一覧</h3>
+            <h3 class="mr-3" style="color: #696969;">新着投稿一覧</h3>
               <% if user_signed_in? %>
                 <p class="mt-1"><%= link_to "すべての投稿を見る", posts_path, class: "link" %></p>
               <% else %>
