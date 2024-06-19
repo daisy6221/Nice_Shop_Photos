@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
     @tag_list = params[:post][:name].split(',')
     if @post.save
       @post.save_tag(@tag_list)
-      redirect_to post_path(@post.id)
+      redirect_to post_path(@post.id), notice: '投稿が完了しました'
     else
       @post.photos.new
       render "new"

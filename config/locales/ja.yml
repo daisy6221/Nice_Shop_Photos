@@ -16,6 +16,8 @@ ja:
         photos: '写真'
       photos:
         image: '画像データ'
+      post_comment:
+        comment: 'コメント'
   errors:
     messages:
       blank: 'を登録してください'
