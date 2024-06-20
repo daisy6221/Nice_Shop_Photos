@@ -3,14 +3,14 @@
     <!--投稿メイン部分-->
     <div class="d-flex">
       <div class="align-items-center my-auto">
-        <%= link_to post_path(post), data: {turbolinks: false}, class: "link" do %>
+        <%= link_to post_path(post), class: "link" do %>
           <%= image_tag post.photos.first.image.url, class: "photo_content_thumbnail" %>
         <% end %>
       </div>
       <!--投稿内容詳細-->
       <div class="flex-column my-auto ml-3">
         <div class="align-text-center mb-2">
-          <%= link_to post_path(post), data: {turbolinks: false}, class: "link" do %>
+          <%= link_to post_path(post), class: "link" do %>
             <h5><strong><%= truncate(post.title, length: 12) %></strong></h5>
           <% end %>
         </div>
