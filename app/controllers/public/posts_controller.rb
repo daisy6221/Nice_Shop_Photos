@@ -53,12 +53,7 @@ class Public::PostsController < ApplicationController
     @post = Post.includes(:photos).find(params[:id])
     @tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
-      # 更新時にタグを削除した場合の処理
-      @old_relations = PostTag.where(post_id: @post.id)
-      @old_relations.each do |relation|
-        relation.delete
-      end
-      @post.save_tag(@tag_list)
+      @post.update_tag(@tag_list)
       redirect_to post_path(@post.id), notice: '投稿が更新されました'
     else
       render "edit"
@@ -68,7 +63,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: '投稿を削除しました'
   end
 
   def search_tag

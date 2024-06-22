@@ -22,7 +22,7 @@ class Public::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to root_path, notice: "ユーザーを削除しました"
+    redirect_to root_path, notice: "ユーザーの退会処理が完了しました"
   end
 
   def likes
