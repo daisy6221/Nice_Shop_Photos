@@ -58,9 +58,16 @@
           </div>
         </div>
       </div>
-        <!--ユーザーの投稿一覧-->
-      <div class="row">
-        <%= render "public/posts/index", posts: @posts %>
+      <!--ユーザーの投稿一覧-->
+      <div class="row flex-column">
+        <% if @user == current_user %>
+          <% unless @user.email == "guest@example.com" then %>
+            <%= render "public/users/tabmenu" %>
+            <%= render "public/users/tab_content" %>
+          <% end %>
+        <% else %>
+          <%= render "public/posts/index", posts: @posts %>
+        <% end %>
       </div>
 
       <div class="pagination justify-content-center">

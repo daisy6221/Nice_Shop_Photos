@@ -21,6 +21,8 @@ class Post < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  enum status: { published: 0, draft: 1,  unpublished: 2 }
+
   #ソート機能
   scope :latest, -> { order(created_at: :desc)}
   scope :old, -> { order(created_at: :asc)}

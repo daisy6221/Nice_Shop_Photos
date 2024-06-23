@@ -11,9 +11,14 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @tag_list = params[:post][:name].split(',')
+
     if @post.save
-      @post.save_tag(@tag_list)
-      redirect_to post_path(@post.id), notice: '投稿が完了しました'
+      if params[:post][:status] == "draft"
+        redirect_to user_path(current_user), notice: '投稿を下書き保存しました'
+      else
+        @post.save_tag(@tag_list)
+        redirect_to post_path(@post.id), notice: '投稿が完了しました'
+      end
     else
       @post.photos.new
       render "new"
@@ -24,13 +29,13 @@ class Public::PostsController < ApplicationController
     @tag_list = Tag.limit(5).popular
 
     if params[:latest]
-      @posts = Post.includes(:photos).page(params[:page]).per(8).latest
+      @posts = Post.where(status: :published).includes(:photos).page(params[:page]).per(8).latest
     elsif params[:old]
-      @posts = Post.includes(:photos).page(params[:page]).per(8).old
+      @posts = Post.where(status: :published).includes(:photos).page(params[:page]).per(8).old
     elsif params[:popular]
-      @posts = Post.includes(:photos).page(params[:page]).per(8).popular
+      @posts = Post.where(status: :published).includes(:photos).page(params[:page]).per(8).popular
     else
-      @posts = Post.includes(:photos).all.page(params[:page]).per(8).order(created_at: :DESC)
+      @posts = Post.where(status: :published).includes(:photos).all.page(params[:page]).per(8).order(created_at: :DESC)
     end
   end
 
@@ -53,8 +58,14 @@ class Public::PostsController < ApplicationController
     @post = Post.includes(:photos).find(params[:id])
     @tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
-      @post.update_tag(@tag_list)
-      redirect_to post_path(@post.id), notice: '投稿が更新されました'
+      if params[:post][:status] == "published"
+        @post.update_tag(@tag_list)
+        redirect_to post_path(@post.id), notice: '投稿が更新されました'
+      elsif params[:post][:status]  == "draft"
+        redirect_to user_path(current_user), notice: '下書きに登録しました。'
+      else
+        redirect_to user_path(current_user), notice: '非公開に設定しました'
+      end
     else
       render "edit"
     end
@@ -96,6 +107,6 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :shop_name, :address, :body, photos_attributes: [:id, :_destroy, :image, :image_cache]).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :shop_name, :address, :body, :status, photos_attributes: [:id, :_destroy, :image, :image_cache]).merge(user_id: current_user.id)
   end
 end

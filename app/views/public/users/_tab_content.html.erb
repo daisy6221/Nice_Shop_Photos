@@ -1,0 +1,12 @@
+<div class="tab-content">
+  <div id="published" class="tab-pane fade show active">
+    <%= render "public/posts/index", posts: @published_posts %>
+  </div>
+  <div id="draft" class="tab-pane fade">
+    <%= render "public/posts/index", posts: @draft_posts %>
+  </div>
+  <div id="unpublished" class="tab-pane fade">
+    <%= render "public/posts/index", posts: @unpublished_posts %>
+  </div>
+</div>
+

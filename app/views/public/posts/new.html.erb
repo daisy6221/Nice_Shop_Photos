@@ -55,6 +55,14 @@
           <%= f.text_area :body, class: "form-control", placeholder: "3字以上200字まで入力可能です" %>
         </div>
 
+        <div class="form-group mt-2 mb-3">
+          <div class="d-flex">
+            <%= f.label :status, "公開範囲を選択" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
+          <%= f.select :status, [["公開", "published"], ["下書き", "draft"]], required: true, class:"form-control" %>
+        </div>
+
         <div class="mt-2 mb-5">
           <%= f.submit "投稿する", class: "btn btn-primary" %>
         </div>
