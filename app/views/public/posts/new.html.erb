@@ -27,10 +27,12 @@
           </div>
           <%= f.text_field :title, autofocus: true, class: "form-control" %>
         </div>
+
         <div class="form-group">
           <%= f.label :tag, "タグ (,で区切ると複数タグ登録できます)" %>
           <%= f.text_field :name, value: @tag_list, class: "form-control" %>
         </div>
+
         <div class="form-group">
           <div class="d-flex">
             <%= f.label :shop_name, "ショップ名" %>
@@ -61,6 +63,7 @@
             <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
           </div>
           <%= f.select :status, [["公開", "published"], ["下書き", "draft"]], required: true, class:"form-control" %>
+          <p>※タグについては下書き・非公開の場合、保存できません</p>
         </div>
 
         <div class="mt-2 mb-5">

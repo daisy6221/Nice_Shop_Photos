@@ -29,13 +29,13 @@ class Public::PostsController < ApplicationController
     @tag_list = Tag.limit(5).popular
 
     if params[:latest]
-      @posts = Post.where(status: :published).includes(:photos).page(params[:page]).per(8).latest
+      @posts = Post.published.includes(:photos).page(params[:page]).per(8).latest
     elsif params[:old]
-      @posts = Post.where(status: :published).includes(:photos).page(params[:page]).per(8).old
+      @posts = Post.published.includes(:photos).page(params[:page]).per(8).old
     elsif params[:popular]
-      @posts = Post.where(status: :published).includes(:photos).page(params[:page]).per(8).popular
+      @posts = Post.published.includes(:photos).page(params[:page]).per(8).popular
     else
-      @posts = Post.where(status: :published).includes(:photos).all.page(params[:page]).per(8).order(created_at: :DESC)
+      @posts = Post.published.includes(:photos).all.page(params[:page]).per(8).order(created_at: :DESC)
     end
   end
 
