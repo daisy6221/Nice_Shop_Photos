@@ -1,4 +1,10 @@
 ja:
+  enums:
+    post:
+      status:
+        published: 公開中
+        draft: 下書き
+        unpublished: 非公開
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>

@@ -71,3 +71,4 @@ gem 'geocoder'
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
 gem 'fog-aws'
 gem 'aws-sdk-s3', require: false
+gem 'enum_help'

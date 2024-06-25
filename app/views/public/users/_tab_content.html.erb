@@ -1,0 +1,32 @@
+<div class="tab-content">
+  <div id="published" class="tab-pane fade show active">
+    <% if @published_posts.present? %>
+      <%= render "public/posts/index", posts: @published_posts %>
+      <div class="pagination justify-content-center">
+        <%= paginate @published_posts, theme: 'bootstrap-5' %>
+      </div>
+    <% else %>
+      <p class="my-2">公開中の投稿はありません</p>
+    <% end %>
+  </div>
+  <div id="draft" class="tab-pane fade">
+    <% if @draft_posts.present? %>
+      <%= render "public/posts/index", posts: @draft_posts %>
+      <div class="pagination justify-content-center">
+        <%= paginate @draft_posts, theme: 'bootstrap-5' %>
+      </div>
+    <% else %>
+      <p class="my-2 text-center">下書き中の投稿はありません</p>
+    <% end %>
+  </div>
+  <div id="unpublished" class="tab-pane fade">
+    <% if @unpublished_posts.present? %>
+      <%= render "public/posts/index", posts: @unpublished_posts %>
+      <div class="pagination justify-content-center">
+        <%= paginate @unpublished_posts, theme: 'bootstrap-5' %>
+      </div>
+    <% else %>
+      <p class="my-2 text-center">非公開の投稿はありません</p>
+    <% end %>
+  </div>
+</div>

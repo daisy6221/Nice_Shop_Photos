@@ -47,10 +47,12 @@
           </div>
           <%= f.text_field :title, autofocus: true, class: "form-control" %>
         </div>
+
         <div class="form-group">
           <%= f.label :tag, "タグ (,で区切ると複数タグ登録できます)" %>
           <%= f.text_field :name, value: @tag_list, class: "form-control" %>
         </div>
+
         <div class="form-group">
           <div class="d-flex">
             <%= f.label :shop_name, "ショップ名" %>
@@ -58,6 +60,7 @@
           </div>
           <%= f.text_field :shop_name, class: "form-control" %>
         </div>
+
         <div class="form-group">
           <div class="d-flex">
             <%= f.label :address, "住所" %>
@@ -65,12 +68,21 @@
           </div>
           <%= f.text_field :address, class: "form-control" %>
         </div>
+
         <div class="form-group">
           <div class="d-flex">
             <%= f.label :body, "おすすめポイント" %>
             <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
           </div>
           <%= f.text_area :body, class: "form-control" %>
+        </div>
+
+        <div class="form-group mt-2 mb-3">
+          <div class="d-flex">
+            <%= f.label :status, "公開範囲を選択" %>
+            <span class="mb-2 ml-1 btn btn-danger btn-sm">必須</span>
+          </div>
+          <%= f.select :status, [["公開", "published"], ["下書き", "draft"], ["非公開", "unpublished"]], required: true, class:"form-control" %>
         </div>
 
         <div class="d-grid gap-2 mt-2 mb-5">

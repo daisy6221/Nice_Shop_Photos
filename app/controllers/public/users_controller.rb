@@ -5,7 +5,11 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def show
-    @posts = @user.posts.page(params[:page]).per(8)
+    @posts = @user.posts.where(status: :published).page(params[:page]).per(8).order(created_at: :DESC)
+    # マイページ:下書き、非公開一覧用
+    @published_posts = @user.posts.where(status: :published).page(params[:page]).per(8).order(created_at: :DESC)
+    @draft_posts = @user.posts.where(status: :draft).page(params[:page]).per(8)
+    @unpublished_posts = @user.posts.where(status: :unpublished).page(params[:page]).per(8)
   end
 
   def edit
@@ -22,12 +26,12 @@ class Public::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to root_path, notice: "ユーザーを削除しました"
+    redirect_to root_path, notice: "ユーザーの退会処理が完了しました"
   end
 
   def likes
     likes = Like.where(user_id: @user.id).pluck(:post_id)
-    @like_post = Post.where(id: likes).page(params[:page]).per(8)
+    @like_post = Post.where(id: likes).page(params[:page]).per(8).order(created_at: :DESC)
   end
 
   private

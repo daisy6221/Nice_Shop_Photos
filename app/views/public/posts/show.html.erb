@@ -3,7 +3,15 @@
 
     <div class="col-md-11 shadow-lg bg-white my-3 mx-auto">
       <div class="row d-flex my-3 align-items-center">
-        <h4 class="ml-3"><strong><%= @post.title %></strong></h4>
+        <div class="d-flex">
+          <h4 class="ml-3"><strong><%= @post.title %></strong></h4>
+          <% if @post.status == "draft" %>
+            <span class="btn btn-warning ml-3">下書き</span>
+          <% elsif @post.status == "unpublished" %>
+            <span class="btn btn-warning ml-3">非公開</span>
+          <% end %>
+        </div>
+
         <div class="ml-auto my-auto d-flex">
           <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
           <p class="mx-3" id="post_comments_count">

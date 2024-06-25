@@ -21,10 +21,14 @@ class Post < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  enum status: { published: 0, draft: 1,  unpublished: 2 }
+
   #ソート機能
   scope :latest, -> { order(created_at: :desc)}
   scope :old, -> { order(created_at: :asc)}
   scope :popular, -> { left_outer_joins(:likes).group("posts.id").order("COUNT(likes.id) DESC") }
+  scope :published, -> { where(status: 'published') }
+  scope :admin, -> { where(status: ['published', 'unpublished']) }
 
   # キーワード検索機能
   def self.search_for(content, tag)
@@ -39,14 +43,24 @@ class Post < ApplicationRecord
     likes.exists?(user_id: user.id)
   end
 
-  # タグリンク検索
-  def save_tag(sent_tags)
+  # タグ機能(新規投稿)
+  def save_tag(tags)
+    tags.each do |new|
+      self.tags.find_or_create_by(name: new)
+    end
+  end
+
+  # タグ機能(更新時)
+  def update_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - sent_tags
     new_tags = sent_tags - current_tags
 
     old_tags.each do |old|
-      self.tags.delete Tag.find_by(name: old)
+      tag_to_delete = Tag.find_by(name: old)
+      self.tags.delete(tag_to_delete)
+      # 紐づけ投稿がない場合、タグ自体を削除
+      tag_to_delete.destroy if tag_to_delete.posts.empty?
     end
 
     new_tags.each do |new|
