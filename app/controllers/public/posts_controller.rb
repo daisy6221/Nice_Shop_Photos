@@ -35,13 +35,18 @@ class Public::PostsController < ApplicationController
     elsif params[:popular]
       @posts = Post.published.includes(:photos).page(params[:page]).per(8).popular
     else
-      @posts = Post.published.includes(:photos).all.page(params[:page]).per(8).order(created_at: :DESC)
+      @posts = Post.published.includes(:photos).page(params[:page]).per(8).order(created_at: :DESC)
     end
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    if @post.status == 'draft' || @post.status == 'unpublished'
+      unless @user == current_user
+        redirect_to posts_path, alert: "この投稿は現在公開されておりません"
+      end
+    end
     @post_comment = PostComment.new
     @post_tag = @post.tags
   end

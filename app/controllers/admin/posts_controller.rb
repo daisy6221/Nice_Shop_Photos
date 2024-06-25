@@ -3,19 +3,22 @@ class Admin::PostsController < ApplicationController
 
   def index
     if params[:latest]
-      @posts = Post.includes(:photos).all.page(params[:page]).per(8).latest
+      @posts = Post.admin.includes(:photos).page(params[:page]).per(8).latest
     elsif params[:old]
-      @posts = Post.includes(:photos).all.page(params[:page]).per(8).old
+      @posts = Post.admin.includes(:photos).page(params[:page]).per(8).old
     elsif params[:popular]
-      @posts = Post.includes(:photos).all.page(params[:page]).per(8).popular
+      @posts = Post.admin.includes(:photos).page(params[:page]).per(8).popular
     else
-      @posts = Post.includes(:photos).all.page(params[:page]).per(8).order(created_at: :DESC).order(created_at: :DESC)
+      @posts = Post.admin.includes(:photos).page(params[:page]).per(8).order(created_at: :DESC)
     end
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    if @post.status == "draft"
+      redirect_to admin_posts_path, alert: "ユーザーが下書きに指定しているため、管理者側で閲覧できません"
+    end
     @post_tag = @post.tags
   end
 
@@ -31,13 +34,12 @@ class Admin::PostsController < ApplicationController
     @post = Post.includes(:photos).find(params[:id])
     @tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
-      # 更新時にタグを削除した場合の処理
-      @old_relations = PostTag.where(post_id: @post.id)
-      @old_relations.each do |relation|
-        relation.delete
+      if params[:post][:status] == "unpublished"
+        redirect_to admin_posts_path, notice: '投稿を非公開に設定しました'
+      else
+        @post.update_tag(@tag_list)
+        redirect_to admin_post_path(@post.id), notice: '投稿が更新されました'
       end
-      @post.save_tag(@tag_list)
-      redirect_to admin_post_path(@post.id), notice: '投稿が更新されました'
     else
       render "edit"
     end
@@ -52,6 +54,6 @@ class Admin::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :shop_name, :address, :body, photos_attributes: [:id, :_destroy, :image, :image_cache])
+    params.require(:post).permit(:title, :shop_name, :address, :body, :status, photos_attributes: [:id, :_destroy, :image, :image_cache])
   end
 end

@@ -28,6 +28,7 @@ class Post < ApplicationRecord
   scope :old, -> { order(created_at: :asc)}
   scope :popular, -> { left_outer_joins(:likes).group("posts.id").order("COUNT(likes.id) DESC") }
   scope :published, -> { where(status: 'published') }
+  scope :admin, -> { where(status: ['published', 'unpublished']) }
 
   # キーワード検索機能
   def self.search_for(content, tag)

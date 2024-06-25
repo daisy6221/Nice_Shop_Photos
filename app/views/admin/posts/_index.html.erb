@@ -4,7 +4,7 @@
       <th>写真</th>
       <th>タイトル</th>
       <th>ユーザー名</th>
-      <th></th>
+      <th>公開範囲</th>
       <th></th>
     </tr>
   </thead>
@@ -28,9 +28,11 @@
         <% end %>
       </td>
       <td>
-        コメント数: <%= post.post_comments.count %>
-        いいね数: <%= post.likes.count %><br>
-        <i class="fas fa-tag"></i><%= post.tags.map(&:name).join(', ') %>
+        <% if post.status == "published" %>
+          <span class="btn btn-primary">公開中</span>
+        <% else %>
+          <span class="btn btn-warning">非公開</span>
+        <% end %>
       </td>
       <td><%= link_to "編集する", edit_admin_post_path(post), class: "btn btn-secondary" %></td>
     </tr>
