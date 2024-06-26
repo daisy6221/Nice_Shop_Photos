@@ -25,7 +25,10 @@
 - 同じ趣味の人とつながりたい時
 ​
 ## 設計書
-![ER図](./PR_ER図.png)
+![PF_ER図](https://github.com/daisy6221/Nice_Shop_Photos/assets/160582011/39a01df2-3a5d-4587-b5bc-893d2ed6c057)
+
+## AWS構成図
+![PF_infra設計図](https://github.com/daisy6221/Nice_Shop_Photos/assets/160582011/685c9ce6-ecd1-4c49-b9df-a2c9721a817e)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
