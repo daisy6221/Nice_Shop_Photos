@@ -25,7 +25,7 @@
 - 同じ趣味の人とつながりたい時
 ​
 ## 設計書
-![PF_ER図](https://github.com/daisy6221/Nice_Shop_Photos/assets/160582011/39a01df2-3a5d-4587-b5bc-893d2ed6c057)
+![PF_ER図(修正版)](https://github.com/daisy6221/Nice_Shop_Photos/assets/160582011/e699e279-1614-4237-9f44-a1a73e17957e)
 
 ## AWS構成図
 ![PF_infra設計図](https://github.com/daisy6221/Nice_Shop_Photos/assets/160582011/685c9ce6-ecd1-4c49-b9df-a2c9721a817e)
