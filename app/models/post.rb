@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
+  has_many :notifications, as: :notifiable, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
 
   #画像投稿のバリテーション
@@ -29,6 +30,12 @@ class Post < ApplicationRecord
   scope :popular, -> { left_outer_joins(:likes).group("posts.id").order("COUNT(likes.id) DESC") }
   scope :published, -> { where(status: 'published') }
   scope :admin, -> { where(status: ['published', 'unpublished']) }
+
+  after_create do
+    user.followers.each do |follower|
+      notifications.create(user_id: follower.id)
+    end
+  end
 
   # キーワード検索機能
   def self.search_for(content, tag)

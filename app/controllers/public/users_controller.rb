@@ -31,7 +31,11 @@ class Public::UsersController < ApplicationController
 
   def likes
     likes = Like.where(user_id: @user.id).pluck(:post_id)
-    @like_post = Post.where(id: likes).page(params[:page]).per(8).order(created_at: :DESC)
+    if @user == current_user
+      @like_post = Post.where(id: likes).page(params[:page]).per(8).order(created_at: :DESC)
+    else
+      @like_post = Post.published.where(id: likes).page(params[:page]).per(8).order(created_at: :DESC)
+    end
   end
 
   private

@@ -9,10 +9,42 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
        <% if user_signed_in? %>
-         <li><%= link_to "Top", root_path, class: "nav-link" %></li>
-         <li><%= link_to "投稿一覧", posts_path, class: "nav-link" %></li>
-         <li><%= link_to "マイページ", user_path(current_user), class: "nav-link" %></li>
-         <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+         <li>
+           <%= link_to root_path, class: "nav-link" do %>
+             <i class="fa-solid fa-house"></i> Top
+           <% end %>
+         </li>
+         <li>
+           <%= link_to posts_path, class: "nav-link" do %>
+             <i class="fa-solid fa-images"></i> Posts
+           <% end %>
+         </li>
+         <li>
+           <%= link_to user_path(current_user), class: "nav-link" do %>
+             <i class="fa-solid fa-user"></i> My page
+           <% end %>
+         </li>
+         <li class="dropdown">
+           <button class="btn btn-custom-notification dropdown-toggle mt-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fa-solid fa-bell"></i>
+             <span class="badge badge-secondary"><%= current_user.notifications.where(read: false).count %></span>
+           </button>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+             <% if current_user.notifications.where(read: false).any? %>
+               <small class="dropdown-item disabled">直近5件の未読の通知を表示しています</small>
+               <% current_user.notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
+                 <%= link_to notification_message(notification), notification_path(notification), method: :patch, class: "dropdown-item" %>
+               <% end %>
+             <% else %>
+               <span class="dropdown-item disabled">未読の通知はありません</span>
+             <% end %>
+           </div>
+         </li>
+         <li>
+           <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+             <i class="fa-solid fa-right-from-bracket"></i> Log out
+           <% end %>
+         </li>
        <% elsif admin_signed_in? %>
          <li><%= link_to "会員一覧", admin_top_path, class: "nav-link" %></li>
          <li><%= link_to "投稿一覧", admin_posts_path, class: "nav-link" %></li>
