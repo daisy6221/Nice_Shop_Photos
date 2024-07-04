@@ -4,4 +4,8 @@ class PostComment < ApplicationRecord
   has_one :notification, as: :notifiable, dependent: :destroy
 
   validates :comment, presence: true, length: { maximum: 100 }
+
+  after_create do
+    create_notification(user_id: post.user_id)
+  end
 end

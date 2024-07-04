@@ -31,6 +31,12 @@ class Post < ApplicationRecord
   scope :published, -> { where(status: 'published') }
   scope :admin, -> { where(status: ['published', 'unpublished']) }
 
+  after_create do
+    user.followers.each do |follower|
+      notifications.create(user_id: follower.id)
+    end
+  end
+
   # キーワード検索機能
   def self.search_for(content, tag)
     if tag.present?
