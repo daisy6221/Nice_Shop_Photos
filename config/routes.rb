@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'contacts/new'
+    get 'contacts/confirm'
+  end
   get '/search' => 'searches#search'
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -46,7 +50,13 @@ Rails.application.routes.draw do
     end
 
     resources :notifications, only: [:update]
-
+    resources :contacts, only: [:new, :create] do
+      collection do
+        post 'confirm'
+        post 'back'
+        get 'done'
+      end
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
