@@ -1,2 +1,51 @@
-<h1>Public::Contacts#confirm</h1>
-<p>Find me in app/views/public/contacts/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 shadow-lg bg-white mx-auto mb-5">
+
+      <h3 class="my-2" style="color: #696969;">入力内容確認画面</h3>
+
+        <div class="mt-5 mb-3">
+          <p class="mb-2" style="color: #696969;"><strong>お名前</strong></p>
+          <%= @contact.name %>
+        </div>
+
+        <div class="my-3">
+          <p class="mb-2" style="color: #696969;"><strong>メールアドレス</strong></p>
+          <%= @contact.email %>
+        </div>
+
+        <div class="my-3">
+          <p class="mb-2" style="color: #696969;"><strong>件名</strong></p>
+          <%= @contact.subject %>
+        </div>
+
+        <div class="my-3">
+          <p class="mb-2" style="color: #696969;"><strong>お問い合わせ内容</strong></p>
+          <%= @contact.message %>
+        </div>
+
+        <div class="d-flex my-5">
+          <div class="mr-3">
+            <%= form_with model: @contact, url: contacts_path, method: :post, local:true do |f| %>
+              <%= f.hidden_field :name, value: @contact.name %>
+              <%= f.hidden_field :email, value: @contact.email %>
+              <%= f.hidden_field :subject, value: @contact.subject %>
+              <%= f.hidden_field :message, value: @contact.message %>
+              <%= f.submit "送信する", class: "btn btn-outline-primary px-3 py-1" %>
+            <% end %>
+          </div>
+
+          <div>
+            <%= form_with model: @contact, url: back_contacts_path, method: :post do |f| %>
+              <%= f.hidden_field :name, value: @contact.name %>
+              <%= f.hidden_field :email, value: @contact.email %>
+              <%= f.hidden_field :subject, value: @contact.subject %>
+              <%= f.hidden_field :message, value: @contact.message %>
+              <%= f.submit '入力画面に戻る', class: "btn btn-outline-secondary px-3 py-1" %></div>
+            <% end %>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
