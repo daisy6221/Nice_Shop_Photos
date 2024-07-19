@@ -24,6 +24,11 @@ ja:
         image: '画像データ'
       post_comment:
         comment: 'コメント'
+      contact:
+        name: '名前'
+        email: 'Eメール'
+        subject: '件名'
+        message: '内容'
   errors:
     format: "%{attribute}%{message}"
     messages:
